@@ -4,15 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>ArrayList学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="ArrayList解析1.ArrayList的继承体系  ArrayList 又称动态数组，底层是基于数组实现的List，与数组的区别在于，其具备动态扩展能力。从继承体系图中可看出ArrayList： 1234public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;        implements List&lt;E&gt;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList学习">
+<meta property="og:url" content="http://example.com/2021/12/20/ArrayList%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ArrayList解析1.ArrayList的继承体系  ArrayList 又称动态数组，底层是基于数组实现的List，与数组的区别在于，其具备动态扩展能力。从继承体系图中可看出ArrayList： 1234public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;        implements List&lt;E&gt;,">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/12/20/ArrayList%E5%AD%A6%E4%B9%A0/ArrayList学习.assets/image-20211221103732446.png">
+<meta property="article:published_time" content="2021-12-20T14:06:13.000Z">
+<meta property="article:modified_time" content="2021-12-21T11:40:46.264Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JDK 源码 collection">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/20/ArrayList%E5%AD%A6%E4%B9%A0/ArrayList学习.assets/image-20211221103732446.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -69,122 +76,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-postName" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/12/20/postName/" class="article-date">
-  <time class="dt-published" datetime="2021-12-20T14:06:13.000Z" itemprop="datePublished">2021-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/20/postName/">postName</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Github-Page-第一个文档测试"><a href="#Github-Page-第一个文档测试" class="headerlink" title="Github Page 第一个文档测试"></a>Github Page 第一个文档测试</h2><p>从今天开始，将学习记录放在这里面</p>
-<ol>
-<li><p>方便做一个记录，自己的学习日常。</p>
-</li>
-<li><p>为了查找知识方便，分享自己的学习记录。</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/20/postName/" data-id="ckxg1il820000agv31v1d0fot" data-title="postName" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/frist-markdown-test/" rel="tag">frist markdown test</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-springboot注解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2021-12-20T14:06:13.000Z" itemprop="datePublished">2021-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/">springboot 配置文件注解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="springboot读取配置文件属性注解"><a href="#springboot读取配置文件属性注解" class="headerlink" title="springboot读取配置文件属性注解"></a>springboot读取配置文件属性注解</h3><p>springboot读取配置文件属性注解：</p>
-<ul>
-<li>@Value</li>
-<li>@PropertySource</li>
-<li>@ConfigurationProperity</li>
-</ul>
-<h4 id="1-Value"><a href="#1-Value" class="headerlink" title="1.@Value"></a>1.@Value</h4><p><strong>功能：</strong>@Value先读默认配置文件application.properties中定义的属性。</p>
-<p><strong>使用方式：</strong>@Value()  注解加载到成员变量上</p>
-<p><strong>举例：</strong>@Value(“${user.name}”)</p>
-<p>application.properities配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">user.username</span>:<span class="string">yangbo</span></span><br><span class="line"><span class="meta">user.password</span>:<span class="string">123456</span></span><br></pre></td></tr></table></figure>
-
-<p>java代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span><span class="comment">// lombok插件注解,可替换成setter/getter</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span><span class="comment">// lombok插件注解,可替换成全参构造函数</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span><span class="comment">// lombok插件注解,可替换成空参构造函数</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;user.username&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String username;<span class="comment">//yangbo</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;user.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;<span class="comment">//123456</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-PropertySource"><a href="#2-PropertySource" class="headerlink" title="2.@PropertySource"></a>2.@PropertySource</h4><p>读取<strong>自定义</strong>的配置文件的中定义的属性</p>
-<p><strong>使用方式：</strong> <code>@PropertySource(value=&#123;classpath:/指定配置文件名称&#125;)</code> 该注解加载成员变量上</p>
-<p><strong>举例：</strong> <code>@PropertySource(value=&#123;&quot;classpath:/user.properties&quot;&#125;)</code></p>
-<p><strong>user.properties</strong> 中配置</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">user.username</span>=<span class="string">yangbo</span></span><br><span class="line"><span class="meta">user.password</span>=<span class="string">123456</span></span><br><span class="line"><span class="meta">user.age</span>=<span class="string">25</span></span><br></pre></td></tr></table></figure>
-
-<p>java代码读取</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span><span class="comment">// lombok插件注解,可替换成setter/getter</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span><span class="comment">// lombok插件注解,可替换成全参构造函数</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span><span class="comment">// lombok插件注解,可替换成空参构造函数</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//注册到spring</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;user.username&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;user.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;user.age&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/" data-id="ckxg1il8a0003agv3flpeen0e" data-title="springboot 配置文件注解" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot%E5%AD%A6%E4%B9%A0/" rel="tag">springboot学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ArrayList学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-ArrayList学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/12/20/ArrayList%E5%AD%A6%E4%B9%A0/" class="article-date">
   <time class="dt-published" datetime="2021-12-20T14:06:13.000Z" itemprop="datePublished">2021-12-20</time>
@@ -197,8 +89,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/20/ArrayList%E5%AD%A6%E4%B9%A0/">ArrayList学习</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      ArrayList学习
     </h1>
   
 
@@ -422,62 +314,28 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/12/20/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-12-20T13:00:02.837Z" itemprop="datePublished">2021-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          springboot 配置文件注解
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/20/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2021/12/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/20/hello-world/" data-id="ckxg1il870001agv31xv1125s" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
