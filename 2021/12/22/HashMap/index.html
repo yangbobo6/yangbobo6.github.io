@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>HashMap详解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="hashmap解析（面试+源码）1.前提知识数组： 连续内存，对于取值很方便，但是在申请时候，大小固定，扩容不方便（新建数组，复制过来），浪费性能。 链表： 插入时，非常方便，但是访问最后一个元素非常不方便。 散列表： （数组+链表） 结合数组和链表的优势，劣势，散列表性能更好。 哈希：任意长度的输入，通过hash算法变成固定长度的输出。 哈希特点：  不可以反向推到原始的数据 输入的数据微小变化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap详解">
+<meta property="og:url" content="http://example.com/2021/12/22/HashMap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="hashmap解析（面试+源码）1.前提知识数组： 连续内存，对于取值很方便，但是在申请时候，大小固定，扩容不方便（新建数组，复制过来），浪费性能。 链表： 插入时，非常方便，但是访问最后一个元素非常不方便。 散列表： （数组+链表） 结合数组和链表的优势，劣势，散列表性能更好。 哈希：任意长度的输入，通过hash算法变成固定长度的输出。 哈希特点：  不可以反向推到原始的数据 输入的数据微小变化">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-22T14:06:13.000Z">
+<meta property="article:modified_time" content="2021-12-22T14:22:53.934Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JDK 源码 collection">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-HashMap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/22/HashMap/" class="article-date">
+  <time class="dt-published" datetime="2021-12-22T14:06:13.000Z" itemprop="datePublished">2021-12-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      HashMap详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="hashmap解析（面试-源码）"><a href="#hashmap解析（面试-源码）" class="headerlink" title="hashmap解析（面试+源码）"></a>hashmap解析（面试+源码）</h2><h3 id="1-前提知识"><a href="#1-前提知识" class="headerlink" title="1.前提知识"></a>1.前提知识</h3><p><strong>数组：</strong></p>
+<p>连续内存，对于取值很方便，但是在申请时候，大小固定，扩容不方便（新建数组，复制过来），浪费性能。</p>
+<p><strong>链表：</strong></p>
+<p>插入时，非常方便，但是访问最后一个元素非常不方便。</p>
+<p><strong>散列表：</strong></p>
+<p>（数组+链表）</p>
+<p>结合数组和链表的优势，劣势，散列表性能更好。</p>
+<p>哈希：任意长度的输入，通过hash算法变成固定长度的输出。</p>
+<p><strong>哈希特点：</strong></p>
+<ol>
+<li>不可以反向推到原始的数据</li>
+<li>输入的数据微小变化会得到不同的hash值，相同的数据得到相同的值</li>
+<li>哈希算法执行的效率要高效</li>
+<li>hash算法的冲突概率要小</li>
+<li>hash会产生冲突，要尽量将冲突减到最小</li>
+</ol>
+<h3 id="2-HashMap原理的讲解"><a href="#2-HashMap原理的讲解" class="headerlink" title="2. HashMap原理的讲解"></a>2. HashMap原理的讲解</h3><h4 id="2-1-HashMap简述"><a href="#2-1-HashMap简述" class="headerlink" title="2.1 HashMap简述"></a>2.1 HashMap简述</h4><ul>
+<li>HashMap 基于哈希表的 Map 接口实现，是以 key-value 存储形式存在，即主要用来存放键值对。HashMap 的实现不是同步的，这意味着它<strong>不是线程安全</strong>的。它的 key、value 都可以为 null，此外，HashMap 中的<strong>映射不是有序</strong>的。</li>
+<li>dk1.8 之前 HashMap 由 <strong>数组 + 链表</strong> 组成，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突（<strong>两个对象调用的 hashCode 方法计算的哈希值经哈希函数算出来的地址被别的元素占用</strong>）而存在的（“拉链法”解决冲突）。jdk1.8 以后在解决哈希冲突时有了较大的变化，<strong>当链表长度大于阈值（或者红黑树的边界值，默认为 8 ）并且当前数组的长度大于 64 时，此时此索引位置上的所有数据改为使用红黑树存储</strong>。</li>
+</ul>
+<h4 id="2-2-Node介绍"><a href="#2-2-Node介绍" class="headerlink" title="2.2 Node介绍"></a>2.2 Node介绍</h4><p>Node是一个典型的<strong>单链表</strong>节点，其中，hash用来存储key计算得来的hash值，是一个内部类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;<span class="comment">// hash用来存储key计算得来的hash值</span></span><br><span class="line">    <span class="keyword">final</span> K key;<span class="comment">// 键</span></span><br><span class="line">    V value;<span class="comment">// 值</span></span><br><span class="line">    Node&lt;K,V&gt; next;<span class="comment">// 下一个node节点</span></span><br><span class="line">    Node(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">        <span class="keyword">this</span>.hash = hash;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> K <span class="title">getKey</span><span class="params">()</span>        </span>&#123; <span class="keyword">return</span> key; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">getValue</span><span class="params">()</span>      </span>&#123; <span class="keyword">return</span> value; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> key + <span class="string">&quot;=&quot;</span> + value; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;<span class="comment">// 调用底层c++ 返回Key/Value的哈希码值，如果此对象为null,则返回0</span></span><br><span class="line">        <span class="keyword">return</span> Objects.hashCode(key) ^ Objects.hashCode(value);<span class="comment">// 将Key/Vaule</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">setValue</span><span class="params">(V newValue)</span> </span>&#123;</span><br><span class="line">        V oldValue = value;</span><br><span class="line">        value = newValue;</span><br><span class="line">        <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">this</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o <span class="keyword">instanceof</span> Map.Entry) &#123;</span><br><span class="line">            Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;</span><br><span class="line">            <span class="keyword">if</span> (Objects.equals(key, e.getKey()) &amp;&amp;</span><br><span class="line">                Objects.equals(value, e.getValue()))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/22/HashMap/" data-id="ckxhnj9on0000tov3cv4ibhou" data-title="HashMap详解" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-%E6%BA%90%E7%A0%81-collection/" rel="tag">JDK 源码 collection</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/12/20/postName/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">postName</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-%E6%BA%90%E7%A0%81-collection/" rel="tag">JDK 源码 collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frist-markdown-test/" rel="tag">frist markdown test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot%E5%AD%A6%E4%B9%A0/" rel="tag">springboot学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDK-%E6%BA%90%E7%A0%81-collection/" style="font-size: 20px;">JDK 源码 collection</a> <a href="/tags/frist-markdown-test/" style="font-size: 10px;">frist markdown test</a> <a href="/tags/springboot%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">springboot学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/22/HashMap/">HashMap详解</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/20/postName/">postName</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/">springboot 配置文件注解</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/20/ArrayList%E5%AD%A6%E4%B9%A0/">ArrayList学习</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/20/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
