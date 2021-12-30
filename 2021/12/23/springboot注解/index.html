@@ -23,25 +23,25 @@
 <meta name="description" content="springboot读取配置文件属性注解springboot读取配置文件属性注解：  @Value @PropertySource @ConfigurationProperity  1.@Value功能：@Value先读默认配置文件application.properties中定义的属性。 使用方式：@Value()  注解加载到成员变量上 举例：@Value(“${user.name}”) ap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot 配置文件注解">
-<meta property="og:url" content="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:url" content="http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="springboot读取配置文件属性注解springboot读取配置文件属性注解：  @Value @PropertySource @ConfigurationProperity  1.@Value功能：@Value先读默认配置文件application.properties中定义的属性。 使用方式：@Value()  注解加载到成员变量上 举例：@Value(“${user.name}”) ap">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/springboot%E6%B3%A8%E8%A7%A3.assets/image-20211221195018539.png">
-<meta property="og:image" content="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/springboot%E6%B3%A8%E8%A7%A3.assets/image-20211221195122156.png">
-<meta property="article:published_time" content="2021-12-20T14:06:13.000Z">
-<meta property="article:modified_time" content="2021-12-21T12:00:34.765Z">
+<meta property="og:image" content="http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/springboot%E6%B3%A8%E8%A7%A3.assets/image-20211221195018539.png">
+<meta property="og:image" content="http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/springboot%E6%B3%A8%E8%A7%A3.assets/image-20211221195122156.png">
+<meta property="article:published_time" content="2021-12-23T14:06:13.000Z">
+<meta property="article:modified_time" content="2021-12-30T12:36:09.847Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="springboot学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/springboot%E6%B3%A8%E8%A7%A3.assets/image-20211221195018539.png">
+<meta name="twitter:image" content="http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/springboot%E6%B3%A8%E8%A7%A3.assets/image-20211221195018539.png">
 
 
-<link rel="canonical" href="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/">
+<link rel="canonical" href="http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/","path":"2021/12/20/springboot注解/","title":"springboot 配置文件注解"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/","path":"2021/12/23/springboot注解/","title":"springboot 配置文件注解"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>springboot 配置文件注解 | Hexo</title>
@@ -124,12 +124,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -168,7 +168,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/20/springboot%E6%B3%A8%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/23/springboot%E6%B3%A8%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -192,14 +192,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-12-20 22:06:13" itemprop="dateCreated datePublished" datetime="2021-12-20T22:06:13+08:00">2021-12-20</time>
+      <time title="Created: 2021-12-23 22:06:13" itemprop="dateCreated datePublished" datetime="2021-12-23T22:06:13+08:00">2021-12-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-21 20:00:34" itemprop="dateModified" datetime="2021-12-21T20:00:34+08:00">2021-12-21</time>
+      <time title="Modified: 2021-12-30 20:36:09" itemprop="dateModified" datetime="2021-12-30T20:36:09+08:00">2021-12-30</time>
     </span>
 
   
@@ -290,13 +290,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/20/Page%E5%88%86%E9%A1%B5/" rel="prev" title="分页设计">
-                  <i class="fa fa-chevron-left"></i> 分页设计
+                <a href="/2021/12/22/HashMap/" rel="prev" title="HashMap详解">
+                  <i class="fa fa-chevron-left"></i> HashMap详解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/12/20/mybatis/" rel="next" title="Mybatis  xml文件">
-                  Mybatis  xml文件 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/12/25/java%E8%8E%B7%E5%8F%96%E6%97%B6%E9%97%B4/" rel="next" title="java获取时间">
+                  java获取时间 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
