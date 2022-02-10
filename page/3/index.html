@@ -20,28 +20,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="SpringBoot整合SpringSecurity1. 引入依赖123456&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.springframework.boot&#x2F;spring-boot-starter-security --&gt;&lt;dependency&gt;    &lt;groupId&gt;org.springframework.b">
-<meta property="og:type" content="article">
-<meta property="og:title" content="spring security">
-<meta property="og:url" content="http://example.com/2021/01/01/SpringSecurity/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="SpringBoot整合SpringSecurity1. 引入依赖123456&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.springframework.boot&#x2F;spring-boot-starter-security --&gt;&lt;dependency&gt;    &lt;groupId&gt;org.springframework.b">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-01T07:27:00.000Z">
-<meta property="article:modified_time" content="2022-01-02T10:26:16.947Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="SpringSecurity">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2021/01/01/SpringSecurity/">
+<link rel="canonical" href="http://example.com/page/3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/01/01/SpringSecurity/","path":"2021/01/01/SpringSecurity/","title":"spring security"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>spring security | Hexo</title>
+<title>Hexo</title>
   
 
 
@@ -67,7 +62,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Hexo</p>
+      <h1 class="site-title">Hexo</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -95,7 +90,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -108,7 +103,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#SpringBoot%E6%95%B4%E5%90%88SpringSecurity"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot整合SpringSecurity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">2.</span> <span class="nav-text">1. 引入依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AF%B9User%E5%AE%9E%E4%BD%93%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%8A%9F%E8%83%BD%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">2.对User实体进行加功能处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-UserService%E5%AE%9E%E7%8E%B0%E7%B1%BB%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">3.UserService实现类进行加工处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-SecurityConfig%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">5.</span> <span class="nav-text">4.SecurityConfig配置类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-controller"><span class="nav-number">6.</span> <span class="nav-text">5.controller</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -154,17 +148,116 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/01/javaweb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/01/javaweb/" class="post-title-link" itemprop="url">web知识点</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-01 17:19:23" itemprop="dateCreated datePublished" datetime="2021-01-01T17:19:23+08:00">2021-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-03 09:49:44" itemprop="dateModified" datetime="2022-01-03T09:49:44+08:00">2022-01-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Web 模糊知识点</p>
+<h3 id="1-HttpServletRequest"><a href="#1-HttpServletRequest" class="headerlink" title="1.HttpServletRequest"></a>1.HttpServletRequest</h3><h4 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h4><p>网页端发送过来的请求，携带网页端信息。</p>
+<p>HttpServletRequest对象代表客户端的请求，当客户端通过HTTP协议访问服务器时，HTTP请求头中的所有信息都封装在这个对象中，通过这个对象提供的方法，可以获得客户端请求的所有信息。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getRequestURL()	返回客户端发出请求时的完整URL。</span><br><span class="line">getRequestURI()	返回请求行中的参数部分。</span><br><span class="line">getQueryString ()	方法返回请求行中的参数部分（参数名+值）</span><br><span class="line">getRemoteHost()	返回发出请求的客户机的完整主机名。</span><br><span class="line">getRemoteAddr()	返回发出请求的客户机的IP地址。</span><br><span class="line">getPathInfo()	返回请求URL中的额外路径信息。额外路径信息是请求URL中的位于Servlet的路径之后和查询参数之前的内容，它以&quot;/&quot;开头。</span><br><span class="line">getRemotePort()	返回客户机所使用的网络端口号。</span><br><span class="line">getLocalAddr()	返回WEB服务器的IP地址。</span><br><span class="line">getLocalName()	返回WEB服务器的主机名。</span><br></pre></td></tr></table></figure>
+
+<p>举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Servlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse resp)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		doPost(request, resp);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse resp)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String requestUrl = request.getRequestURL().toString();<span class="comment">// 得到请求的URL地址</span></span><br><span class="line">		resp.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);<span class="comment">// 设置将字符以&quot;UTF-8&quot;编码输出到客户端浏览器</span></span><br><span class="line">		<span class="comment">// 通过设置响应头控制浏览器以UTF-8的编码显示数据，如果不加这句话，那么浏览器显示的将是乱码</span></span><br><span class="line">		resp.setHeader(<span class="string">&quot;content-type&quot;</span>, <span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">		PrintWriter out = resp.getWriter();</span><br><span class="line">		out.write(<span class="string">&quot;请求的URL地址：&quot;</span> + requestUrl);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="请求转发：request-getRequestDispatcher"><a href="#请求转发：request-getRequestDispatcher" class="headerlink" title="请求转发：request.getRequestDispatcher"></a>请求转发：request.getRequestDispatcher</h4><p>指一个web资源收到客户端请求后，通知服务器去调用另外一个web资源进行处理。</p>
+<p>1.通过ServletContext的getRequestDispatcher(String path)方法，该方法返回一个RequestDispatcher对象，调用这个对象的forward方法可以实现请求转发。</p>
+<p>例如：将请求转发的test.jsp页面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RequestDispatcher reqDispatcher =<span class="keyword">this</span>.getServletContext().getRequestDispatcher(<span class="string">&quot;/test.jsp&quot;</span>);</span><br><span class="line">reqDispatcher.forward(request, response);</span><br></pre></td></tr></table></figure>
+
+<p>2.通过request对象提供的getRequestDispatche(String path)方法，该方法返回一个RequestDispatcher对象，调用这个对象的forward方法可以实现请求转发。**</p>
+<p>例如：将请求转发的test.jsp页面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;/test.jsp&quot;</span>).forward(request, response);</span><br></pre></td></tr></table></figure>
+
+<p>request对象同时也是一个域对象(Map容器)，开发人员通过request对象在实现转发时，把数据通过request对象带给其它web资源处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String data=<span class="string">&quot;心若静，风奈何&quot;</span>;</span><br><span class="line">         <span class="comment">//将数据存放到request对象中,此时把request对象当作一个Map容器来使用</span></span><br><span class="line">        request.setAttribute(<span class="string">&quot;data&quot;</span>, data);</span><br><span class="line">        <span class="comment">//客户端访问RequestDemo06这个Servlet后，RequestDemo06通知服务器将请求转发(forward)到test.jsp页面进行处理</span></span><br><span class="line">        request.getRequestDispatcher(<span class="string">&quot;/test.jsp&quot;</span>).forward(request, response);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/response响应：</span><br><span class="line">response.sendRedirect(request.getContextPath()+<span class="string">&quot;/index&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="set-getAttribute"><a href="#set-getAttribute" class="headerlink" title="set/getAttribute"></a>set/getAttribute</h4><p>request对象作为一个域对象(Map容器)使用时，主要是通过以下的四个方法来操作:<br>**setAttribute(String name,Object o)**方法，将数据作为request对象的一个属性存放到request对象中，例如：request.setAttribute(“data”, data);</p>
+<p>**getAttribute(String name)**方法，获取request对象的name属性的属性值，例如：request.getAttribute(“data”)</p>
+<p>**removeAttribute(String name)**方法，移除request对象的name属性，例如：request.removeAttribute(“data”)</p>
+<p><strong>getAttributeNames</strong>方法，获取request对象的所有属性名，返回的是一个，例如：Enumeration<br>attrNames = request.getAttributeNames()；</p>
+<h4 id="model-attribute"><a href="#model-attribute" class="headerlink" title="model.attribute"></a>model.attribute</h4><p>往前台传数据，可以传对象，可以传List，通过el表达式 ${}可以获取到，</p>
+<p>类似于request.setAttribute(“sts”,sts)效果一样。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/01/SpringSecurity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -177,9 +270,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          spring security
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/01/SpringSecurity/" class="post-title-link" itemprop="url">spring security</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -209,7 +302,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h4 id="SpringBoot整合SpringSecurity"><a href="#SpringBoot整合SpringSecurity" class="headerlink" title="SpringBoot整合SpringSecurity"></a>SpringBoot整合SpringSecurity</h4><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h4 id="SpringBoot整合SpringSecurity"><a href="#SpringBoot整合SpringSecurity" class="headerlink" title="SpringBoot整合SpringSecurity"></a>SpringBoot整合SpringSecurity</h4><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1. 引入依赖"></a>1. 引入依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>可以去maven库里面远程仓库搜索，找引用次数最多的</p>
 <p>当我们引入依赖后，<strong>SpringSecurity</strong> 就立即生效！启动项目主函数后，我们来测试访问下首页：<a target="_blank" rel="noopener" href="https://csp1999.blog.csdn.net/article/details/110497775?spm=1001.2014.3001.5502">http://localhost:8080/community/index</a>，这时候它会自动被拦截到登<strong>SpringSecurity</strong>自带的登录页面：</p>
@@ -228,6 +321,7 @@
 <h4 id="5-controller"><a href="#5-controller" class="headerlink" title="5.controller"></a>5.controller</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/index&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIndexPage</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 认证成功后,结果user信息会通过SecurityContextHolder存入SecurityContext中.</span></span><br><span class="line">        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> User) &#123;</span><br><span class="line">            model.addAttribute(<span class="string">&quot;loginUser&quot;</span>, obj);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/discuss&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDiscussPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/site/discuss&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/letter&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLetterPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/site/letter&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/admin&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAdminPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/site/admin&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/loginpage&quot;, method = &#123;RequestMethod.GET, RequestMethod.POST&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLoginPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/site/login&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 拒绝访问时的提示页面</span></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/denied&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDeniedPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/error/404&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+      
     </div>
 
     
@@ -235,21 +329,8 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/SpringSecurity/" rel="tag"># SpringSecurity</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/01/01/javaweb/" rel="next" title="web知识点">
-                  web知识点 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -257,7 +338,9 @@
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 </div>
   </main>
