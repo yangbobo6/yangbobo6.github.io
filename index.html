@@ -115,12 +115,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -149,6 +149,84 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/02/15/redis/" class="post-title-link" itemprop="url">redis</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-02-15 15:37:13 / Modified: 15:42:44" itemprop="dateCreated datePublished" datetime="2022-02-15T15:37:13+08:00">2022-02-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="RedisTemplate取值类型转换问题"><a href="#RedisTemplate取值类型转换问题" class="headerlink" title="RedisTemplate取值类型转换问题"></a>RedisTemplate取值类型转换问题</h2><p>问题：</p>
+<p>当用到redis缓存数据库数据时，存的时候，可以是String，可以是处理过的对象，还可以是List集合…，但是在取数据时，作为操作者的你需要对接收到的数据类型做转换，否则类型不一致，影响返回和接收。</p>
+<h3 id="解决方案一："><a href="#解决方案一：" class="headerlink" title="解决方案一："></a><strong>解决方案一：</strong></h3><p>封装关于redis的get方法，通过泛型对值类型进行转换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//存储时，value为一个对象，返回时，value默认为 object类型，需要进行类型转换</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">getList</span><span class="params">(String key, Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">        Object value = redisTemplate.opsForValue().get(key);</span><br><span class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (List&lt;T&gt;) value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存储时，value为一个List集合对象，返回时，需要进行类型转换</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">get</span><span class="params">(String key, Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">    Object value = redisTemplate.opsForValue().get(key, hashKey);</span><br><span class="line">    <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (T) value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//调用示例：</span></span><br><span class="line"><span class="comment">//存对象					查询到的一条Person对象数据</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;zhangsan&quot;</span>, Person);</span><br><span class="line"></span><br><span class="line"><span class="comment">//取 需要接受Person对象类型    	调用自定义的get方法</span></span><br><span class="line">Person p1 = get(<span class="string">&quot;zhangsan&quot;</span>, Person.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">//存List集合对象					查询到的多条条Person对象数据</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;persons&quot;</span>, List&lt;Person&gt;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//取 需要接收List&lt;Person&gt;类型</span></span><br><span class="line">List&lt;Person&gt; list = getList(<span class="string">&quot;zhangsan&quot;</span>, Person.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person p1 = get(<span class="string">&quot;zhangsan&quot;</span>, Person.class);</span><br><span class="line">可能会有类型转换异常，此时可使用方式二</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决方案二："><a href="#解决方案二：" class="headerlink" title="解决方案二："></a>解决方案二：</h3><p>使用JSON</p>
+<p>1、引用java依赖包</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/fastjson --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.78<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、进行转换，不用自己再进行封装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JsonUtils.toJsonStr(person)作用：将person对象数据转换为json字符转【方法可以网上自行百度（很简单）】</span></span><br><span class="line"><span class="comment">//注意：是转换为JSON字符串，不是通过Person实体类的toString()将其转换为String。此时存进去的value是JSON字符串类型</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;zhangsan&quot;</span>, JSON.toJSONString(person));</span><br><span class="line"></span><br><span class="line"><span class="comment">//取数据：将JSON字符串转换为指定的java对象接收</span></span><br><span class="line">String value = redisTemplate.opsForValue().get(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span>(value != <span class="keyword">null</span>) &#123;</span><br><span class="line">        Person p2= JSONObject.parseObject(value, Person.class); </span><br><span class="line">        <span class="keyword">return</span> p2;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1286,82 +1364,6 @@
 <h3 id="6-标签管理"><a href="#6-标签管理" class="headerlink" title="6.标签管理"></a>6.标签管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切换到需要打标签的分支上：</span></span><br><span class="line">git branch</span><br><span class="line">git checkout master</span><br><span class="line"><span class="comment">#打一个新的标签</span></span><br><span class="line">git tag v1.0</span><br><span class="line"><span class="comment">#查看标签</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment">#比方说要对add merge这次提交打标签，它对应的commit id是f52c633，敲入命令：</span></span><br><span class="line">git tag v0.9 f52c633</span><br><span class="line"><span class="comment">#查看标签信息</span></span><br><span class="line">git show &lt;tagname&gt;</span><br><span class="line"><span class="comment">#删除标签</span></span><br><span class="line">git tag -d v0.1</span><br><span class="line"><span class="comment">#推送标签到远程</span></span><br><span class="line">git push origin v1.0</span><br></pre></td></tr></table></figure>
 
 <h3 id="7-搭建git服务器"><a href="#7-搭建git服务器" class="headerlink" title="7.搭建git服务器"></a>7.搭建git服务器</h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/java%E8%8E%B7%E5%8F%96%E6%97%B6%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/25/java%E8%8E%B7%E5%8F%96%E6%97%B6%E9%97%B4/" class="post-title-link" itemprop="url">java获取时间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-12-25 22:06:13" itemprop="dateCreated datePublished" datetime="2021-12-25T22:06:13+08:00">2021-12-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-30 20:36:17" itemprop="dateModified" datetime="2021-12-30T20:36:17+08:00">2021-12-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="java获取时间"><a href="#java获取时间" class="headerlink" title="java获取时间"></a>java获取时间</h3><h4 id="获取时间戳"><a href="#获取时间戳" class="headerlink" title="获取时间戳"></a>获取时间戳</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">		<span class="comment">//1. System获取  微秒</span></span><br><span class="line">        System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.Calendar  处理时间慢  慎用！！ 美式时间</span></span><br><span class="line">        Calendar.getInstance().getTime();</span><br><span class="line">    	<span class="comment">//微秒</span></span><br><span class="line">        Calendar.getInstance().getTimeInMillis();</span><br><span class="line">		</span><br><span class="line">    	<span class="comment">//3. Date 美式时间</span></span><br><span class="line">    	<span class="keyword">new</span> Date();</span><br><span class="line">    	<span class="comment">//微秒数</span></span><br><span class="line">        <span class="keyword">new</span> Date().getTime();</span><br><span class="line">        </span><br><span class="line">		<span class="comment">//设置日期格式</span></span><br><span class="line">        SimpleDateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">        String date = df.format(<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="java获取两时间差（天数）"><a href="#java获取两时间差（天数）" class="headerlink" title="java获取两时间差（天数）"></a>java获取两时间差（天数）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getTime</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//计算两个时间的差的天数</span></span><br><span class="line">        String dateStr = <span class="string">&quot;2008-1-1 1:21:28&quot;</span>;</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">        System.out.println(format.parse(dateStr));   <span class="comment">//美式时间</span></span><br><span class="line">        System.out.println(format.parse(dateStr).getTime()); <span class="comment">//毫秒</span></span><br><span class="line">        <span class="keyword">long</span> time = format.parse(dateStr).getTime();</span><br><span class="line">        <span class="keyword">long</span> time2 = <span class="keyword">new</span> Date().getTime();</span><br><span class="line">        <span class="keyword">int</span> days = (<span class="keyword">int</span>)((time2 - time)/(<span class="number">1000</span>*<span class="number">3600</span>*<span class="number">24</span>));</span><br><span class="line">        System.out.println(time+<span class="string">&quot;---------&quot;</span>+time2);</span><br><span class="line">        System.out.println(days);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="java获取前一天，后一天"><a href="#java获取前一天，后一天" class="headerlink" title="java获取前一天，后一天"></a>java获取前一天，后一天</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">time</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getTime</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//获取前一天的时间</span></span><br><span class="line">        Date date4 = <span class="keyword">new</span> Date(<span class="keyword">new</span> Date().getTime()-<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line">		String time = sdf.format(date4);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//用Calendar</span></span><br><span class="line">        Calendar calendar = <span class="keyword">new</span> GregorianCalendar();</span><br><span class="line">		calendar.setTime(<span class="keyword">new</span> Date());</span><br><span class="line">        <span class="comment">//改为1，就是后一天</span></span><br><span class="line">		calendar.add(calendar.DATE,-<span class="number">1</span>);</span><br><span class="line">		String date2= sdf.format(calendar.getTime());</span><br><span class="line">		System.out.println(date2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
       
     </div>
 
