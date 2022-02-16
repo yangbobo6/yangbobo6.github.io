@@ -20,15 +20,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="redisRedisTemplate取值类型转换问题问题： 当用到redis缓存数据库数据时，存的时候，可以是String，可以是处理过的对象，还可以是List集合…，但是在取数据时，作为操作者的你需要对接收到的数据类型做转换，否则类型不一致，影响返回和接收。 解决方案一：封装关于redis的get方法，通过泛型对值类型进行转换。 123456789101112131415161718192021">
+<meta name="description" content="redis1.RedisTemplate取值类型转换问题问题： 当用到redis缓存数据库数据时，存的时候，可以是String，可以是处理过的对象，还可以是List集合…，但是在取数据时，作为操作者的你需要对接收到的数据类型做转换，否则类型不一致，影响返回和接收。 解决方案一：封装关于redis的get方法，通过泛型对值类型进行转换。 1234567891011121314151617181920">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis">
 <meta property="og:url" content="http://example.com/2022/02/15/redis/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="redisRedisTemplate取值类型转换问题问题： 当用到redis缓存数据库数据时，存的时候，可以是String，可以是处理过的对象，还可以是List集合…，但是在取数据时，作为操作者的你需要对接收到的数据类型做转换，否则类型不一致，影响返回和接收。 解决方案一：封装关于redis的get方法，通过泛型对值类型进行转换。 123456789101112131415161718192021">
+<meta property="og:description" content="redis1.RedisTemplate取值类型转换问题问题： 当用到redis缓存数据库数据时，存的时候，可以是String，可以是处理过的对象，还可以是List集合…，但是在取数据时，作为操作者的你需要对接收到的数据类型做转换，否则类型不一致，影响返回和接收。 解决方案一：封装关于redis的get方法，通过泛型对值类型进行转换。 1234567891011121314151617181920">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-15T07:37:13.000Z">
-<meta property="article:modified_time" content="2022-02-15T07:42:44.850Z">
+<meta property="article:modified_time" content="2022-02-16T08:28:02.224Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -108,7 +108,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis"><span class="nav-number">1.</span> <span class="nav-text">redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RedisTemplate%E5%8F%96%E5%80%BC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">RedisTemplate取值类型转换问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决方案一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">解决方案二：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis"><span class="nav-number">1.</span> <span class="nav-text">redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-RedisTemplate%E5%8F%96%E5%80%BC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">1.RedisTemplate取值类型转换问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决方案一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">解决方案二：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-docker-%E9%83%A8%E7%BD%B2-redis"><span class="nav-number">1.2.</span> <span class="nav-text">2.docker 部署 redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 拉取镜像  配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-docker%E5%90%AF%E5%8A%A8redis"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 docker启动redis</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -188,9 +188,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-02-15 15:37:13 / Modified: 15:42:44" itemprop="dateCreated datePublished" datetime="2022-02-15T15:37:13+08:00">2022-02-15</time>
+      <time title="Created: 2022-02-15 15:37:13" itemprop="dateCreated datePublished" datetime="2022-02-15T15:37:13+08:00">2022-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-16 16:28:02" itemprop="dateModified" datetime="2022-02-16T16:28:02+08:00">2022-02-16</time>
     </span>
 
   
@@ -203,7 +209,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="RedisTemplate取值类型转换问题"><a href="#RedisTemplate取值类型转换问题" class="headerlink" title="RedisTemplate取值类型转换问题"></a>RedisTemplate取值类型转换问题</h2><p>问题：</p>
+        <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="1-RedisTemplate取值类型转换问题"><a href="#1-RedisTemplate取值类型转换问题" class="headerlink" title="1.RedisTemplate取值类型转换问题"></a>1.RedisTemplate取值类型转换问题</h2><p>问题：</p>
 <p>当用到redis缓存数据库数据时，存的时候，可以是String，可以是处理过的对象，还可以是List集合…，但是在取数据时，作为操作者的你需要对接收到的数据类型做转换，否则类型不一致，影响返回和接收。</p>
 <h3 id="解决方案一："><a href="#解决方案一：" class="headerlink" title="解决方案一："></a><strong>解决方案一：</strong></h3><p>封装关于redis的get方法，通过泛型对值类型进行转换。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//存储时，value为一个对象，返回时，value默认为 object类型，需要进行类型转换</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">getList</span><span class="params">(String key, Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">        Object value = redisTemplate.opsForValue().get(key);</span><br><span class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (List&lt;T&gt;) value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存储时，value为一个List集合对象，返回时，需要进行类型转换</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">get</span><span class="params">(String key, Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">    Object value = redisTemplate.opsForValue().get(key, hashKey);</span><br><span class="line">    <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (T) value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//调用示例：</span></span><br><span class="line"><span class="comment">//存对象					查询到的一条Person对象数据</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;zhangsan&quot;</span>, Person);</span><br><span class="line"></span><br><span class="line"><span class="comment">//取 需要接受Person对象类型    	调用自定义的get方法</span></span><br><span class="line">Person p1 = get(<span class="string">&quot;zhangsan&quot;</span>, Person.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">//存List集合对象					查询到的多条条Person对象数据</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;persons&quot;</span>, List&lt;Person&gt;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//取 需要接收List&lt;Person&gt;类型</span></span><br><span class="line">List&lt;Person&gt; list = getList(<span class="string">&quot;zhangsan&quot;</span>, Person.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -216,6 +222,34 @@
 
 <p>2、进行转换，不用自己再进行封装</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JsonUtils.toJsonStr(person)作用：将person对象数据转换为json字符转【方法可以网上自行百度（很简单）】</span></span><br><span class="line"><span class="comment">//注意：是转换为JSON字符串，不是通过Person实体类的toString()将其转换为String。此时存进去的value是JSON字符串类型</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;zhangsan&quot;</span>, JSON.toJSONString(person));</span><br><span class="line"></span><br><span class="line"><span class="comment">//取数据：将JSON字符串转换为指定的java对象接收</span></span><br><span class="line">String value = redisTemplate.opsForValue().get(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span>(value != <span class="keyword">null</span>) &#123;</span><br><span class="line">        Person p2= JSONObject.parseObject(value, Person.class); </span><br><span class="line">        <span class="keyword">return</span> p2;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-docker-部署-redis"><a href="#2-docker-部署-redis" class="headerlink" title="2.docker 部署 redis"></a>2.docker 部署 redis</h2><h3 id="2-1-拉取镜像-配置"><a href="#2-1-拉取镜像-配置" class="headerlink" title="2.1 拉取镜像  配置"></a>2.1 拉取镜像  配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">docker search redis</span><br><span class="line">docker pull **</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置config</span></span><br><span class="line">首先在/root/redis/data 创建好文件夹用于存放redis数据，这个文件夹位置也可以自己选。</span><br><span class="line"></span><br><span class="line">然后在/root/redis/ 创建好redis.conf文件。用户redis的配置。redis.conf可以从redis官网下载 然后启动的时候导入redis的配置文件，就可以按照配置来启动了。</span><br><span class="line"></span><br><span class="line">mkdir /root/redis</span><br><span class="line">mkdir /root/redis/data</span><br><span class="line"></span><br><span class="line">下载</span><br><span class="line">wget https://raw.githubusercontent.com/antirez/redis/5.0/redis.conf -O redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line">1、注销<span class="built_in">bind</span></span><br><span class="line">2、protected-mode yes  改为 no</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-docker启动redis"><a href="#2-2-docker启动redis" class="headerlink" title="2.2 docker启动redis"></a>2.2 docker启动redis</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动命令</span></span><br><span class="line">docker run -p 6279:6279 --name redis \</span><br><span class="line">-v /mydata/redis/data/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">-v /mydata/redis/data:/data \</span><br><span class="line">-d redis:latest redis-server /etc/redis/redis.conf --appendonly yes</span><br><span class="line"></span><br><span class="line"><span class="comment">#解释</span></span><br><span class="line">-p 6379:6379:把容器内的6379端口映射到宿主机6379端口</span><br><span class="line">-v /root/redis/redis.conf:/root/redis/redis.conf：把宿主机配置好的redis.conf放到容器内的这个位置中</span><br><span class="line">-v /root/redis/data:/data：把redis持久化的数据在宿主机内显示，做数据备份</span><br><span class="line"></span><br><span class="line">redis-server /etc/redis/redis.conf：这个是关键配置，让redis不是无配置启动，而是按照这个redis.conf的配置启动</span><br><span class="line"></span><br><span class="line"><span class="comment">#进入redis里面</span></span><br><span class="line">docker <span class="built_in">exec</span> -it redis redis-cli</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     </div>
