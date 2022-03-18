@@ -115,12 +115,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -149,6 +149,117 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/13/%E6%89%8B%E5%86%99%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/13/%E6%89%8B%E5%86%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">手写服务器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-13 16:11:13" itemprop="dateCreated datePublished" datetime="2022-03-13T16:11:13+08:00">2022-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-03-18 21:52:07" itemprop="dateModified" datetime="2022-03-18T21:52:07+08:00">2022-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="BIO同步阻塞-服务器"><a href="#BIO同步阻塞-服务器" class="headerlink" title="BIO同步阻塞 服务器"></a>BIO同步阻塞 服务器</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>手写一个web服务器，客户端请求页面，服务端响应页面，响应的内容是根据每个web请求来产生动态内容的，其内部即启动多个线程产生不同内容，这种请求响应式的交互，都是基于HTTP协议的</p>
+<p>常见服务器：</p>
+<ul>
+<li>WEB服务器</li>
+<li>数据库服务器（存储）</li>
+<li>缓存服务器（蹄盖性能）</li>
+</ul>
+<p><img src="%E6%89%8B%E5%86%99%E6%9C%8D%E5%8A%A1%E5%99%A8.assets/image-20220313162033869.png" alt="image-20220313162033869">需要用到的知识点：</p>
+<ol>
+<li>OOP面向对象的思想</li>
+<li>java容器知识</li>
+<li>IO网络编程</li>
+<li>多线程</li>
+<li>xml解析</li>
+<li>反射知识点</li>
+<li>HTTP协议</li>
+</ol>
+<h2 id="2-知识点"><a href="#2-知识点" class="headerlink" title="2.知识点"></a>2.知识点</h2><h3 id="2-1-xml案例介绍1"><a href="#2-1-xml案例介绍1" class="headerlink" title="2.1 xml案例介绍1"></a>2.1 xml案例介绍1</h3><p>xml：<strong>可扩展标记语言</strong>（看图识万物的感觉），作为数据的一种存储格式或用于存储软件的参数，程序解析此配置文件</p>
+<p>例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">persions</span>&gt;</span>       一群人（List）</span><br><span class="line">    <span class="tag">&lt;<span class="name">person</span>&gt;</span>	 一个人 (java一个类)</span><br><span class="line">    	<span class="tag">&lt;<span class="name">name</span>&gt;</span>杨同学<span class="tag">&lt;/<span class="name">name</span>&gt;</span>（Field）</span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">person</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">name</span>&gt;</span>谭同学<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>70000<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">persions</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>xml解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParserConfigurationException, SAXException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//sax解析</span></span><br><span class="line">        <span class="comment">//1.获取解析工厂</span></span><br><span class="line">        SAXParserFactory factory = SAXParserFactory.newInstance();</span><br><span class="line">        <span class="comment">//2.从解析工厂中获取解析器</span></span><br><span class="line">        SAXParser parse = factory.newSAXParser();</span><br><span class="line">        <span class="comment">//3.加载文档 Document注册解析器</span></span><br><span class="line">        <span class="comment">//4.编写处理器</span></span><br><span class="line">        PersonHandler handler = <span class="keyword">new</span> PersonHandler();</span><br><span class="line">        <span class="comment">//5.解析  当前线程的类加载器</span></span><br><span class="line">        parse.parse(Thread.currentThread()</span><br><span class="line">                .getContextClassLoader()</span><br><span class="line">                .getResourceAsStream(<span class="string">&quot;xmlTest/p.xml&quot;</span>),handler);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取数据</span></span><br><span class="line">        List&lt;Person&gt; personList = handler.getPersons();</span><br><span class="line">        System.out.println(personList.size());</span><br><span class="line">        <span class="keyword">for</span> (Person p:personList</span><br><span class="line">             ) &#123;</span><br><span class="line">            System.out.println(p.getName()+<span class="string">&quot;--&gt;&quot;</span>+p.getAge());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>对xml文件的内容进行解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonHandler</span> <span class="keyword">extends</span> <span class="title">DefaultHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Person&gt; persons;</span><br><span class="line">    <span class="keyword">private</span> Person person;</span><br><span class="line">    <span class="keyword">private</span> String tag;  <span class="comment">//存储操作的标签</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">getPersons</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> persons;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//开始解析文档</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startDocument</span><span class="params">()</span> <span class="keyword">throws</span> SAXException </span>&#123;</span><br><span class="line">        persons = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//解析开始标签</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startElement</span><span class="params">(String uri, String localName, String qName, Attributes attributes)</span> <span class="keyword">throws</span> SAXException </span>&#123;</span><br><span class="line">        <span class="comment">//只关注qName  标签名person  --&gt;name  --&gt;age</span></span><br><span class="line">        System.out.println(qName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (qName!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            tag = qName;</span><br><span class="line">            <span class="keyword">if</span>(qName.equals(<span class="string">&quot;person&quot;</span>))&#123;</span><br><span class="line">                person = <span class="keyword">new</span> Person();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">characters</span><span class="params">(<span class="keyword">char</span>[] ch, <span class="keyword">int</span> start, <span class="keyword">int</span> length)</span> <span class="keyword">throws</span> SAXException </span>&#123;</span><br><span class="line">        String contests = <span class="keyword">new</span> String(ch,start,length).trim();</span><br><span class="line">        <span class="keyword">if</span>(tag!=<span class="keyword">null</span>)&#123;  <span class="comment">//处理为空的问题</span></span><br><span class="line">            <span class="keyword">if</span>(tag.equals(<span class="string">&quot;name&quot;</span>))&#123;</span><br><span class="line">                person.setName(contests);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(tag.equals(<span class="string">&quot;age&quot;</span>))&#123;</span><br><span class="line">                <span class="keyword">if</span>(contests.length()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//age后面会被 空字符串 覆盖，</span></span><br><span class="line">                    person.setAge(Integer.valueOf(contests));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//解析结束标签</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endElement</span><span class="params">(String uri, String localName, String qName)</span> <span class="keyword">throws</span> SAXException </span>&#123;</span><br><span class="line">        System.out.println(qName+<span class="string">&quot;标签解析结束&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(qName!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(qName.equals(<span class="string">&quot;person&quot;</span>))&#123;</span><br><span class="line">                persons.add(person);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//将tag丢弃，防止赋空值</span></span><br><span class="line">            tag = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//结束</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endDocument</span><span class="params">()</span> <span class="keyword">throws</span> SAXException </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2案例介绍2"><a href="#2-2案例介绍2" class="headerlink" title="2.2案例介绍2"></a>2.2案例介绍2</h3><p>用xml解析servlet （服务器脚本）</p>
+<p>xml文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>login<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>login<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/login<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/g<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>reg<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>reg<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/reg<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>解释： 通过路径（url-pattern）找 servlet名字，再根据名字找class，再用反射创建对象</p>
+<h3 id="2-3-html"><a href="#2-3-html" class="headerlink" title="2.3 html"></a>2.3 html</h3><p>name : 作为后端使用，区分为一</p>
+<p>id：作为前端使用，区分为一</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">      用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;uname&quot;</span> <span class="attr">id</span>=<span class="string">&quot;uname&quot;</span>/&gt;</span></span><br><span class="line">      密码： <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;pwd&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pwd&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;登录&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4HTTP协议"><a href="#2-4HTTP协议" class="headerlink" title="2.4HTTP协议"></a>2.4HTTP协议</h3><p>浏览器和服务器交流的协议，所有www文件都必须遵守这个协议</p>
+<p>自己写的 客户端和服务器 交流，也需要HTTP协议</p>
+<h2 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h2><h3 id="3-4封装多线程"><a href="#3-4封装多线程" class="headerlink" title="3.4封装多线程"></a>3.4封装多线程</h3><p>不同的处理，对应不同的响应，不需要手动启动服务器</p>
+<h1 id="NIO-同步非阻塞服务器"><a href="#NIO-同步非阻塞服务器" class="headerlink" title="NIO 同步非阻塞服务器"></a>NIO 同步非阻塞服务器</h1><h2 id="知识点区："><a href="#知识点区：" class="headerlink" title="知识点区："></a>知识点区：</h2><h3 id="1-常用方法"><a href="#1-常用方法" class="headerlink" title="1.常用方法"></a>1.常用方法</h3><h4 id="1-1getResourceAsStream"><a href="#1-1getResourceAsStream" class="headerlink" title="1.1getResourceAsStream"></a>1.1getResourceAsStream</h4><p>JAVA里面对于类进行调用配置资源的文件数据</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/feeltouch/article/details/83796764">https://blog.csdn.net/feeltouch/article/details/83796764</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1240,164 +1351,6 @@
     <div class="post-body" itemprop="articleBody">
           <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huanzi-qch/p/12133872.html">https://www.cnblogs.com/huanzi-qch/p/12133872.html</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/git%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/25/git%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">git指令操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-12-25 22:06:13" itemprop="dateCreated datePublished" datetime="2021-12-25T22:06:13+08:00">2021-12-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-30 20:36:15" itemprop="dateModified" datetime="2021-12-30T20:36:15+08:00">2021-12-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="git的学习"><a href="#git的学习" class="headerlink" title="git的学习"></a>git的学习</h2><h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1. 创建版本库"></a>1. 创建版本库</h3><p>创建一个git仓库，里面的内容交给git托管。每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
-<blockquote>
-<p>git init</p>
-</blockquote>
-<p>当前目录下多了一个<code>.git</code>的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
-<p>然后在git仓库中新建文档，将新建文档添加到仓库</p>
-<blockquote>
-<p>git add 文件名</p>
-</blockquote>
-<p>把文件提交给仓库</p>
-<blockquote>
-<p>git commit -m “添加信息注释”</p>
-</blockquote>
-<h3 id="2-版本回退"><a href="#2-版本回退" class="headerlink" title="2. 版本回退"></a>2. 版本回退</h3><p>查看每次提交的信息, q表示退出</p>
-<blockquote>
-<p>git log    </p>
-<p>git log –pretty==online  减少参数，容易看</p>
-</blockquote>
-<p>版本回退</p>
-<p><strong>通过HEAD方法：</strong></p>
-<blockquote>
-<p>git reset –hard HEAD^</p>
-</blockquote>
-<p>HEAD表示当前版本，^表示上一个，^^上两个 ，HEAD~100 上100个</p>
-<p><strong>通过提交版本号：</strong></p>
-<blockquote>
-<p>git reset –hard 1094a   只需要写前一部分就行，自动匹配</p>
-</blockquote>
-<p>git回退速度很快，指针移动</p>
-<p>重返未来，查看历史的命令</p>
-<blockquote>
-<p>git reflog  </p>
-</blockquote>
-<h3 id="3-git的工作区和暂存区"><a href="#3-git的工作区和暂存区" class="headerlink" title="3.git的工作区和暂存区"></a>3.git的工作区和暂存区</h3><p><strong>工作区（Working Directory）</strong></p>
-<p>电脑里面能看到的目录，文件夹</p>
-<p><strong>版本库（Repository） .git</strong></p>
-<p>工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库。</p>
-<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支<code>master</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code>。</p>
-<p><img src="git%E6%8C%87%E4%BB%A4.assets/image-20211224171936082.png" alt="image-20211224171936082"></p>
-<p><strong>提交文件：</strong></p>
-<p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
-<p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
-<blockquote>
-<p>git checkout – file   撤销最近的提交</p>
-</blockquote>
-<p><strong>删除文件</strong></p>
-<blockquote>
-<p>git rm test.txt</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;remove test.txt&quot;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="4-远程仓库"><a href="#4-远程仓库" class="headerlink" title="4.远程仓库"></a>4.远程仓库</h3><h4 id="4-1添加远程仓库"><a href="#4-1添加远程仓库" class="headerlink" title="4.1添加远程仓库"></a>4.1添加远程仓库</h4><p>前提： 已经有git本地仓库（工作区+版本库），建立与github的关联</p>
-<p>现在github上面创建远程仓库，github仓库是空的，将本地仓库与之关联，将本地推送至github</p>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin ssh连接</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>推送上去（第一次加参数）</p>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>因为远程库是空的，我们第一次推送<code>master</code>分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
-<h4 id="4-2从远程仓库克隆"><a href="#4-2从远程仓库克隆" class="headerlink" title="4.2从远程仓库克隆"></a>4.2从远程仓库克隆</h4><p>当先有远程仓库，然后再建立本地仓库，clone下来</p>
-<p>复制远程github仓库ssh连接，使用git clone命令克隆</p>
-<blockquote>
-<p>git clone ssh链接</p>
-</blockquote>
-<p>克隆其他branch（develop链接）</p>
-<blockquote>
-<p>git clone –branch develop ssh链接</p>
-</blockquote>
-<p>如果多人协作开发一个项目，直接克隆即可。</p>
-<h3 id="5-分支管理"><a href="#5-分支管理" class="headerlink" title="5.分支管理"></a>5.分支管理</h3><p>创建分支并切换</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>相当于</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch dev</span><br><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>分支等相关命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -a //查看所有命令</span><br><span class="line">git switch dev</span><br><span class="line">git branch -d dev  //删除dev</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="6-标签管理"><a href="#6-标签管理" class="headerlink" title="6.标签管理"></a>6.标签管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切换到需要打标签的分支上：</span></span><br><span class="line">git branch</span><br><span class="line">git checkout master</span><br><span class="line"><span class="comment">#打一个新的标签</span></span><br><span class="line">git tag v1.0</span><br><span class="line"><span class="comment">#查看标签</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment">#比方说要对add merge这次提交打标签，它对应的commit id是f52c633，敲入命令：</span></span><br><span class="line">git tag v0.9 f52c633</span><br><span class="line"><span class="comment">#查看标签信息</span></span><br><span class="line">git show &lt;tagname&gt;</span><br><span class="line"><span class="comment">#删除标签</span></span><br><span class="line">git tag -d v0.1</span><br><span class="line"><span class="comment">#推送标签到远程</span></span><br><span class="line">git push origin v1.0</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-搭建git服务器"><a href="#7-搭建git服务器" class="headerlink" title="7.搭建git服务器"></a>7.搭建git服务器</h3>
       
     </div>
 

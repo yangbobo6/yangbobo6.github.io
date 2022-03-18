@@ -115,12 +115,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -149,6 +149,164 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/git%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/12/25/git%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">git指令操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-12-25 22:06:13" itemprop="dateCreated datePublished" datetime="2021-12-25T22:06:13+08:00">2021-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2021-12-30 20:36:15" itemprop="dateModified" datetime="2021-12-30T20:36:15+08:00">2021-12-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="git的学习"><a href="#git的学习" class="headerlink" title="git的学习"></a>git的学习</h2><h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1. 创建版本库"></a>1. 创建版本库</h3><p>创建一个git仓库，里面的内容交给git托管。每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
+<blockquote>
+<p>git init</p>
+</blockquote>
+<p>当前目录下多了一个<code>.git</code>的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
+<p>然后在git仓库中新建文档，将新建文档添加到仓库</p>
+<blockquote>
+<p>git add 文件名</p>
+</blockquote>
+<p>把文件提交给仓库</p>
+<blockquote>
+<p>git commit -m “添加信息注释”</p>
+</blockquote>
+<h3 id="2-版本回退"><a href="#2-版本回退" class="headerlink" title="2. 版本回退"></a>2. 版本回退</h3><p>查看每次提交的信息, q表示退出</p>
+<blockquote>
+<p>git log    </p>
+<p>git log –pretty==online  减少参数，容易看</p>
+</blockquote>
+<p>版本回退</p>
+<p><strong>通过HEAD方法：</strong></p>
+<blockquote>
+<p>git reset –hard HEAD^</p>
+</blockquote>
+<p>HEAD表示当前版本，^表示上一个，^^上两个 ，HEAD~100 上100个</p>
+<p><strong>通过提交版本号：</strong></p>
+<blockquote>
+<p>git reset –hard 1094a   只需要写前一部分就行，自动匹配</p>
+</blockquote>
+<p>git回退速度很快，指针移动</p>
+<p>重返未来，查看历史的命令</p>
+<blockquote>
+<p>git reflog  </p>
+</blockquote>
+<h3 id="3-git的工作区和暂存区"><a href="#3-git的工作区和暂存区" class="headerlink" title="3.git的工作区和暂存区"></a>3.git的工作区和暂存区</h3><p><strong>工作区（Working Directory）</strong></p>
+<p>电脑里面能看到的目录，文件夹</p>
+<p><strong>版本库（Repository） .git</strong></p>
+<p>工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库。</p>
+<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支<code>master</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code>。</p>
+<p><img src="git%E6%8C%87%E4%BB%A4.assets/image-20211224171936082.png" alt="image-20211224171936082"></p>
+<p><strong>提交文件：</strong></p>
+<p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+<p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+<blockquote>
+<p>git checkout – file   撤销最近的提交</p>
+</blockquote>
+<p><strong>删除文件</strong></p>
+<blockquote>
+<p>git rm test.txt</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;remove test.txt&quot;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4-远程仓库"><a href="#4-远程仓库" class="headerlink" title="4.远程仓库"></a>4.远程仓库</h3><h4 id="4-1添加远程仓库"><a href="#4-1添加远程仓库" class="headerlink" title="4.1添加远程仓库"></a>4.1添加远程仓库</h4><p>前提： 已经有git本地仓库（工作区+版本库），建立与github的关联</p>
+<p>现在github上面创建远程仓库，github仓库是空的，将本地仓库与之关联，将本地推送至github</p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin ssh连接</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>推送上去（第一次加参数）</p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>因为远程库是空的，我们第一次推送<code>master</code>分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<h4 id="4-2从远程仓库克隆"><a href="#4-2从远程仓库克隆" class="headerlink" title="4.2从远程仓库克隆"></a>4.2从远程仓库克隆</h4><p>当先有远程仓库，然后再建立本地仓库，clone下来</p>
+<p>复制远程github仓库ssh连接，使用git clone命令克隆</p>
+<blockquote>
+<p>git clone ssh链接</p>
+</blockquote>
+<p>克隆其他branch（develop链接）</p>
+<blockquote>
+<p>git clone –branch develop ssh链接</p>
+</blockquote>
+<p>如果多人协作开发一个项目，直接克隆即可。</p>
+<h3 id="5-分支管理"><a href="#5-分支管理" class="headerlink" title="5.分支管理"></a>5.分支管理</h3><p>创建分支并切换</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>相当于</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch dev</span><br><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>分支等相关命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -a //查看所有命令</span><br><span class="line">git switch dev</span><br><span class="line">git branch -d dev  //删除dev</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-标签管理"><a href="#6-标签管理" class="headerlink" title="6.标签管理"></a>6.标签管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切换到需要打标签的分支上：</span></span><br><span class="line">git branch</span><br><span class="line">git checkout master</span><br><span class="line"><span class="comment">#打一个新的标签</span></span><br><span class="line">git tag v1.0</span><br><span class="line"><span class="comment">#查看标签</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment">#比方说要对add merge这次提交打标签，它对应的commit id是f52c633，敲入命令：</span></span><br><span class="line">git tag v0.9 f52c633</span><br><span class="line"><span class="comment">#查看标签信息</span></span><br><span class="line">git show &lt;tagname&gt;</span><br><span class="line"><span class="comment">#删除标签</span></span><br><span class="line">git tag -d v0.1</span><br><span class="line"><span class="comment">#推送标签到远程</span></span><br><span class="line">git push origin v1.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-搭建git服务器"><a href="#7-搭建git服务器" class="headerlink" title="7.搭建git服务器"></a>7.搭建git服务器</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1712,503 +1870,6 @@
 <p>Server输出</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">MyMessageDecoder decode 被调用</span><br><span class="line">服务器接收到信息如下</span><br><span class="line">长度=<span class="number">27</span></span><br><span class="line">内容=今天天气冷，吃火锅</span><br><span class="line">服务器接收到消息包数量=<span class="number">1</span></span><br><span class="line">服务端开始回复消息------</span><br><span class="line">MyMessageEncoder encode 方法被调用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MyMessageDecoder decode 被调用</span><br><span class="line">服务器接收到信息如下</span><br><span class="line">长度=<span class="number">27</span></span><br><span class="line">内容=今天天气冷，吃火锅</span><br><span class="line">服务器接收到消息包数量=<span class="number">2</span></span><br><span class="line">服务端开始回复消息------</span><br><span class="line">MyMessageEncoder encode 方法被调用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MyMessageDecoder decode 被调用</span><br><span class="line">服务器接收到信息如下</span><br><span class="line">长度=<span class="number">27</span></span><br><span class="line">内容=今天天气冷，吃火锅</span><br><span class="line">服务器接收到消息包数量=<span class="number">3</span></span><br><span class="line">服务端开始回复消息------</span><br><span class="line">MyMessageEncoder encode 方法被调用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MyMessageDecoder decode 被调用</span><br><span class="line">服务器接收到信息如下</span><br><span class="line">长度=<span class="number">27</span></span><br><span class="line">内容=今天天气冷，吃火锅</span><br><span class="line">服务器接收到消息包数量=<span class="number">4</span></span><br><span class="line">服务端开始回复消息------</span><br><span class="line">MyMessageEncoder encode 方法被调用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MyMessageDecoder decode 被调用</span><br><span class="line">服务器接收到信息如下</span><br><span class="line">长度=<span class="number">27</span></span><br><span class="line">内容=今天天气冷，吃火锅</span><br><span class="line">服务器接收到消息包数量=<span class="number">5</span></span><br><span class="line">服务端开始回复消息------</span><br><span class="line">MyMessageEncoder encode 方法被调用</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/19/netty/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/19/netty/" class="post-title-link" itemprop="url">netty学习及源码解读</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-19 14:16:13" itemprop="dateCreated datePublished" datetime="2021-01-19T14:16:13+08:00">2021-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-01-24 20:37:18" itemprop="dateModified" datetime="2022-01-24T20:37:18+08:00">2022-01-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><h3 id="1-1-netty简介"><a href="#1-1-netty简介" class="headerlink" title="1.1 netty简介"></a>1.1 netty简介</h3><ul>
-<li>Netty 是由 JBOSS 提供的一个 Java 开源框架，现为 Github上的独立项目。</li>
-<li>Netty 是一个<strong>异步的、基于事件驱动</strong>（客户端的行为、读写事件）的网络应用框架，用以快速开发高性能、高可靠性的网络 IO 程序。</li>
-<li>Netty主要针对在TCP协议下，面向Clients端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输的应用。</li>
-<li>Netty本质是<strong>一个NIO框架</strong>，适用于服务器通讯相关的多种应用场景<br>要透彻理解Netty ， 需要先学习 NIO ， 这样我们才能阅读 Netty 的源码。</li>
-<li>Netty –&gt; NIO(io和网络) –&gt; 原生的jdk  io和网络编程–&gt;tcp/ip</li>
-</ul>
-<img src="netty.assets/image-20220119160009468.png" alt="image-20220119160009468" style="zoom:50%;" />
-
-<h3 id="1-2-应用场景"><a href="#1-2-应用场景" class="headerlink" title="1.2 应用场景"></a>1.2 应用场景</h3><p>互联网行业：</p>
-<ol>
-<li>互联网行业：在分布式系统中，各个 节点之间需要<strong>远程服务调用（rpc）</strong>，高性能 的 RPC 框架必不可少，Netty 作为异步 高性能的通信框架，往往作为基础通 信组件被这些 RPC 框架使用。</li>
-<li>典型的应用有：<strong>阿里分布式服务框架 Dubbo</strong> 的 RPC 框架使用 Dubbo 协议进 行节点间通信，Dubbo 协议默认使用 Netty 作为基础通信组件，用于实现各 进程节点之间的内部通信</li>
-</ol>
-<img src="netty.assets/image-20220119151755998.png" alt="image-20220119151755998" style="zoom:67%;" />
-
-<p>游戏行业，大数据行业等</p>
-<h2 id="2-io介绍"><a href="#2-io介绍" class="headerlink" title="2 io介绍"></a>2 io介绍</h2><h3 id="2-1-java的io模型"><a href="#2-1-java的io模型" class="headerlink" title="2.1 java的io模型"></a>2.1 java的io模型</h3><ol>
-<li><code>I/O</code> 模型简单的理解：就是用什么样的通道进行数据的发送和接收，很大程度上决定了程序通信的性能。</li>
-<li><code>Java</code> 共支持 <code>3</code> 种网络编程模型 <code>I/O</code> 模式：<code>BIO</code>、<code>NIO</code>、<code>AIO</code>。</li>
-<li><code>Java BIO</code>：同步并阻塞（传统阻塞型），服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销。【简单示意图】，BIO  处理大并发存在瓶颈</li>
-</ol>
-<img src="netty.assets/image-20220119180123949.png" alt="image-20220119180123949" style="zoom:67%;" />
-
-<ol start="4">
-<li><code>Java NIO</code>：同步非阻塞，服务器实现模式为一个线程处理多个请求（连接），即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有 <code>I/O</code> 请求就进行处理。【简单示意图】</li>
-</ol>
-<p><img src="netty.assets/image-20220119180219054.png" alt="image-20220119180219054"></p>
-<ol start="5">
-<li><code>Java AIO(NIO.2)</code>：异步非阻塞，<code>AIO</code> 引入异步通道的概念，采用了 <code>Proactor</code> 模式，简化了程序编写，有效的请求才启动线程，它的特点是先由操作系统完成后才通知服务端程序启动线程去处理，一般适用于连接数较多且连接时间较长的应用。</li>
-</ol>
-<p><strong>BIO,NIO,AIO使用场景分析</strong></p>
-<ol>
-<li><code>BIO</code> 方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，<code>JDK1.4</code> 以前的唯一选择，但程序简单易理解。</li>
-<li><code>NIO</code> 方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，弹幕系统，服务器间通讯等。编程比较复杂，<code>JDK1.4</code> 开始支持。</li>
-<li><code>AIO</code> 方式使用于连接数目多且连接比较长（重操作）的架构，比如相册服务器，充分调用 <code>OS</code> 参与并发操作，编程比较复杂，<code>JDK7</code> 开始支持。</li>
-</ol>
-<h3 id="2-2-java的BIO模型"><a href="#2-2-java的BIO模型" class="headerlink" title="2.2 java的BIO模型"></a>2.2 java的BIO模型</h3><ol>
-<li><code>Java BIO</code> 就是传统的 <code>Java I/O</code> 编程，其相关的类和接口在 <code>java.io</code>。</li>
-<li><code>BIO(BlockingI/O)</code>：同步阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，可以通过线程池机制改善（实现多个客户连接服务器）。【后有应用实例】</li>
-<li><code>BIO(BlockingI/O)</code>：同步阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，可以通过线程池机制改善（实现多个客户连接服务器）。【后有应用实例】</li>
-</ol>
-<p>对 <code>BIO</code> 编程流程的梳理：</p>
-<ol>
-<li>服务器端启动一个 <code>ServerSocket</code>。</li>
-<li>客户端启动 <code>Socket</code> 对服务器进行通信，默认情况下服务器端需要对每个客户建立一个线程与之通讯。</li>
-<li>客户端发出请求后，先咨询服务器是否有线程响应，如果没有则会等待，或者被拒绝。</li>
-<li>如果有响应，客户端线程会等待请求结束后，再继续执行。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yangbo.bio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Executable;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BIOServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 线程机制</span></span><br><span class="line"><span class="comment">         * 1.创建一个线程池</span></span><br><span class="line"><span class="comment">         * 2.如果有客户端连接就创建一个线程，与之通讯（单独写一个方法）</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">//创建一个线程池</span></span><br><span class="line">        ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="comment">//创建serverSocket,监听端口</span></span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">6666</span>);</span><br><span class="line">        <span class="comment">//服务器启动</span></span><br><span class="line">        System.out.println(<span class="string">&quot;服务器启动&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;线程 id:&quot;</span>+Thread.currentThread().getId()+<span class="string">&quot;  名字:&quot;</span>+</span><br><span class="line">                    Thread.currentThread().getName());</span><br><span class="line">            <span class="comment">//监听，等待客户端连接</span></span><br><span class="line">            System.out.println(<span class="string">&quot;等待线程连接--------&quot;</span>);</span><br><span class="line">            <span class="keyword">final</span> Socket socket = serverSocket.accept();</span><br><span class="line">            System.out.println(<span class="string">&quot;连接到一个客户端&quot;</span>);</span><br><span class="line">            <span class="comment">//创建一个线程，与之通讯（单独写一个方法）</span></span><br><span class="line">            newCachedThreadPool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="comment">//可以和客户端通讯</span></span><br><span class="line">                    handler(socket);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//编写一个handler方法，与客户端通讯</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handler</span><span class="params">(Socket socket)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;线程 id:&quot;</span>+Thread.currentThread().getId()+<span class="string">&quot;  名字:&quot;</span>+</span><br><span class="line">                    Thread.currentThread().getName());</span><br><span class="line"></span><br><span class="line">            <span class="comment">//用来接收数据</span></span><br><span class="line">            <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="comment">//通过socket获得一个输入流</span></span><br><span class="line">            InputStream inputStream = socket.getInputStream();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//循环的读取客户端发送的数据</span></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;线程 id:&quot;</span>+Thread.currentThread().getId()+<span class="string">&quot;  名字:&quot;</span>+</span><br><span class="line">                        Thread.currentThread().getName());</span><br><span class="line">                <span class="comment">//把数据读取到bytes里面去</span></span><br><span class="line">                System.out.println(<span class="string">&quot;socket没有读取到数据，阻塞中read......&quot;</span>);</span><br><span class="line">                <span class="keyword">int</span> read = inputStream.read(bytes);</span><br><span class="line">                <span class="comment">//System.out.println(&quot;socket没有读取到数据，阻塞中read......&quot;);</span></span><br><span class="line">                <span class="keyword">if</span>(read!=-<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="comment">//如果还没有读取完   输出  bytes里面从0 -&gt; read</span></span><br><span class="line">                    System.out.println(<span class="keyword">new</span> String(bytes,<span class="number">0</span>,read));</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//关闭和client的连接</span></span><br><span class="line">                socket.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="netty.assets/image-20220119180716647.png" alt="image-20220119180716647"></p>
-<p>问题分析</p>
-<ol>
-<li>每个请求都需要创建独立的线程，与对应的客户端进行数据 <code>Read</code>，业务处理，数据 <code>Write</code>。</li>
-<li>当并发数较大时，需要创建大量线程来处理连接，系统资源占用较大。</li>
-<li>连接建立后，如果当前线程暂时没有数据可读，则线程就阻塞在 <code>Read</code> 操作上，造成线程资源浪费。</li>
-</ol>
-<h2 id="3-Java-NIO编程"><a href="#3-Java-NIO编程" class="headerlink" title="3 Java NIO编程"></a>3 Java NIO编程</h2><h3 id="3-1java-NIO基本介绍"><a href="#3-1java-NIO基本介绍" class="headerlink" title="3.1java NIO基本介绍"></a>3.1java NIO基本介绍</h3><ol>
-<li><code>Java NIO</code> 全称 <code>Java non-blocking IO</code>，是指 <code>JDK</code> 提供的新 <code>API</code>。从 <code>JDK1.4</code> 开始，<code>Java</code> 提供了一系列改进的输入/输出的新特性，被统称为 <code>NIO</code>（即 <code>NewIO</code>），是同步非阻塞的。</li>
-<li><code>NIO</code> 相关类都被放在 <code>java.nio</code> 包及子包下，并且对原 <code>java.io</code> 包中的很多类进行改写。【基本案例】</li>
-<li><code>NIO</code> 有三大核心部分：**<code>Channel</code>（通道）、<code>Buffer</code>（缓冲区）、<code>Selector</code>（选择器）** 。</li>
-<li><code>NIO</code> 是<strong>面向缓冲区，或者面向块编程</strong>的。数据读取到一个它稍后处理的缓冲区，需要时可在缓冲区中前后移动，这就增加了处理过程中的灵活性，使用它可以提供非阻塞式的高伸缩性网络。</li>
-<li><code>Java NIO</code> 的非阻塞模式，使一个线程从某通道发送请求或者读取数据，但是它仅能得到目前可用的数据，如果目前没有数据可用时，就什么都不会获取，而不是保持线程阻塞，所以直至数据变的可以读取之前，该线程可以继续做其他的事情。非阻塞写也是如此，一个线程请求写入一些数据到某通道，但不需要等待它完全写入，这个线程同时可以去做别的事情。【后面有案例说明】</li>
-<li>通俗理解：<code>NIO</code> 是可以做到用一个线程来处理多个操作的。假设有 <code>10000</code> 个请求过来,根据实际情况，可以分配 <code>50</code> 或者 <code>100</code> 个线程来处理。不像之前的阻塞 <code>IO</code> 那样，非得分配 <code>10000</code> 个。</li>
-</ol>
-<p><strong>NIO的buffer（缓冲区）理解</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.nio.IntBuffer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicBuffer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//举例说明 Buffer 的使用(简单说明)</span></span><br><span class="line">        <span class="comment">//创建一个 Buffer，大小为 5，即可以存放 5 个 int</span></span><br><span class="line">        IntBuffer intBuffer = IntBuffer.allocate(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//向buffer存放数据</span></span><br><span class="line">        <span class="comment">//intBuffer.put(10);</span></span><br><span class="line">        <span class="comment">//intBuffer.put(11);</span></span><br><span class="line">        <span class="comment">//intBuffer.put(12);</span></span><br><span class="line">        <span class="comment">//intBuffer.put(13);</span></span><br><span class="line">        <span class="comment">//intBuffer.put(14);</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; intBuffer.capacity(); i++) &#123;</span><br><span class="line">            intBuffer.put(i * <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如何从 buffer 读取数据</span></span><br><span class="line">        <span class="comment">//将 buffer 转换，读写切换(!!!)</span></span><br><span class="line">        intBuffer.flip();</span><br><span class="line">        <span class="keyword">while</span> (intBuffer.hasRemaining()) &#123;</span><br><span class="line">            System.out.println(intBuffer.get());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>NIO和BIO的比较</strong></p>
-<ol>
-<li><code>BIO</code> 以流的方式处理数据，而 <code>NIO</code> 以块的方式处理数据，块 <code>I/O</code> 的效率比流 <code>I/O</code> 高很多。</li>
-<li><code>BIO</code> 是阻塞的，<code>NIO</code> 则是非阻塞的</li>
-<li><code>BIO</code> 基于字节流和字符流进行操作，而 <code>NIO</code> 基于 <code>Channel</code>（通道）和 <code>Buffer</code>（缓冲区）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。<code>Selector</code>（选择器）用于监听多个通道的事件（比如：连接请求，数据到达等），因此使用单个线程就可以监听多个客户端通道。</li>
-<li>Buffer和Channel之间的数据流向是双向的</li>
-</ol>
-<img src="netty.assets/image-20220124134249959.png" alt="image-20220124134249959" style="zoom:67%;" />
-
-
-
-<h3 id="3-2-NIO三大核心原理示意图"><a href="#3-2-NIO三大核心原理示意图" class="headerlink" title="3.2 NIO三大核心原理示意图"></a>3.2 NIO三大核心原理示意图</h3><p><strong>Selector Channel 和 Buffer 关系图（简单版）</strong></p>
-<img src="netty.assets/image-20220120094958972.png" alt="image-20220120094958972" style="zoom:67%;" />
-
-<ol>
-<li>每个 <code>Channel</code> 都会对应一个 <code>Buffer</code>。</li>
-<li><code>Selector</code> 对应一个线程，一个线程对应多个 <code>Channel</code>（连接）。</li>
-<li>该图反应了有三个 <code>Channel</code> 注册到该 <code>Selector</code> //程序</li>
-<li>程序切换到哪个 <code>Channel</code> 是由事件决定的，<code>Event</code> 就是一个重要的概念。</li>
-<li><code>Selector</code> 会根据不同的事件，在各个通道上切换。</li>
-<li><code>Buffer</code> 就是一个内存块，底层是有一个数组。</li>
-<li>数据的读取写入是通过 Buffer，这个和 BIO是不同的，BIO 中要么是输入流，或者是输出流，不能双向，但是 NIO 的 Buffer 是可以读也可以写，需要 flip 方法切换 Channel 是双向的，可以返回底层操作系统的情况，比如 Linux，底层的操作系统通道就是双向的。</li>
-</ol>
-<h4 id="3-2-1-Buffer（缓冲区）"><a href="#3-2-1-Buffer（缓冲区）" class="headerlink" title="3.2.1 Buffer（缓冲区）"></a>3.2.1 Buffer（缓冲区）</h4><p><strong>基本介绍</strong></p>
-<p>在NIO中，buffer是一个顶层父类，是一个抽象类，类的层级关系：</p>
-<img src="netty.assets/image-20220124135247360.png" alt="image-20220124135247360" style="zoom:67%;" />
-
-<p><code>Buffer</code> 类定义了所有的缓冲区都具有的四个属性来提供关于其所包含的数据元素的信息：</p>
-<img src="netty.assets/image-20220124135406373.png" alt="image-20220124135406373" style="zoom:80%;" />
-
-<p><code>Buffer</code> 类相关方法一览</p>
-<p><img src="netty.assets/image-20220124135540523.png" alt="image-20220124135540523"></p>
-<p>ByteBuffer类</p>
-<p>从前面可以看出对于 <code>Java</code> 中的基本数据类型（<code>boolean</code> 除外），都有一个 <code>Buffer</code> 类型与之相对应，最常用的自然是 <code>ByteBuffer</code> 类（二进制数据），该类的主要方法如下：</p>
-<p><img src="netty.assets/image-20220124135625389.png" alt="image-20220124135625389"></p>
-<h4 id="3-2-2-channel通道"><a href="#3-2-2-channel通道" class="headerlink" title="3.2.2 channel通道"></a>3.2.2 channel通道</h4><p><strong>基本介绍</strong></p>
-<ol>
-<li><code>NIO</code> 的通道类似于流，但有些区别如下：    <ul>
-<li>通道可以同时进行读写，而流只能读或者只能写</li>
-<li>通道可以实现异步读写数据</li>
-<li>通道可以从缓冲读数据，也可以写数据到缓冲:</li>
-</ul>
-</li>
-<li><code>BIO</code> 中的 <code>Stream</code> 是单向的，例如 <code>FileInputStream</code> 对象只能进行读取数据的操作，而 <code>NIO</code> 中的通道（<code>Channel</code>）是双向的，可以读操作，也可以写操作。</li>
-<li><code>Channel</code> 在 <code>NIO</code> 中是一个接口 <code>public interface Channel extends Closeable&#123;&#125;</code></li>
-<li>常用的 <code>Channel</code> 类有：**<code>FileChannel</code>、<code>DatagramChannel</code>、<code>ServerSocketChannel</code> 和 <code>SocketChannel</code>**。【<code>ServerSocketChanne</code> 类似 <code>ServerSocket</code>、<code>SocketChannel</code> 类似 <code>Socket</code>】</li>
-<li><code>FileChannel</code> 用于文件的数据读写，<code>DatagramChannel</code> 用于 <code>UDP</code> 的数据读写，<code>ServerSocketChannel</code> 和 <code>SocketChannel</code> 用于 <code>TCP</code> 的数据读写。</li>
-</ol>
-<img src="netty.assets/image-20220124142109245.png" alt="image-20220124142109245" style="zoom:80%;" />
-
-<p><strong>FileChannel 类</strong></p>
-<p><code>FileChannel</code> 主要用来对本地文件进行 <code>IO</code> 操作，常见的方法有</p>
-<ul>
-<li><code>public int read(ByteBuffer dst)</code>，从通道读取数据并放到缓冲区中</li>
-<li><code>public int write(ByteBuffer src)</code>，把缓冲区的数据写到通道中</li>
-<li><code>public long transferFrom(ReadableByteChannel src, long position, long count)</code>，从目标通道中复制数据到当前通道</li>
-<li><code>public long transferTo(long position, long count, WritableByteChannel target)</code>，把数据从当前通道复制给目标通道</li>
-</ul>
-<p><strong>应用实例1 - 本地文件写数据</strong></p>
-<ol>
-<li>使用前面学习后的 <code>ByteBuffer</code>（缓冲）和 <code>FileChannel</code>（通道），将 “hello,尚硅谷” 写入到 <code>file01.txt</code> 中</li>
-<li>文件不存在就创建</li>
-<li>代码演示</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.FileChannel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFileChannel01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String str = <span class="string">&quot;hello,尚硅谷&quot;</span>;</span><br><span class="line">        <span class="comment">//创建一个输出流 -&gt; channel</span></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;d:\\file01.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过 fileOutputStream 获取对应的 FileChannel</span></span><br><span class="line">        <span class="comment">//这个 fileChannel 真实类型是 FileChannelImpl</span></span><br><span class="line">        FileChannel fileChannel = fileOutputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建一个缓冲区 ByteBuffer</span></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将 str 放入 byteBuffer</span></span><br><span class="line">        byteBuffer.put(str.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//对 byteBuffer 进行 flip</span></span><br><span class="line">        byteBuffer.flip();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将 byteBuffer 数据写入到 fileChannel</span></span><br><span class="line">        fileChannel.write(byteBuffer);</span><br><span class="line">        fileOutputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>图解：</p>
-<img src="netty.assets/image-20220120105615737.png" alt="image-20220120105615737" style="zoom:67%;" />
-
-<p><strong>应用实例2 - 本地文件读数据</strong></p>
-<p>实例要求：</p>
-<ol>
-<li>使用前面学习后的 <code>ByteBuffer</code>（缓冲）和 <code>FileChannel</code>（通道），将 <code>file01.txt</code> 中的数据读入到程序，并显示在控制台屏幕</li>
-<li>假定文件已经存在</li>
-<li>代码演示</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.FileChannel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFileChannel02</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建文件的输入流</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;d:\\file01.txt&quot;</span>);</span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//通过 fileInputStream 获取对应的 FileChannel -&gt; 实际类型 FileChannelImpl</span></span><br><span class="line">        FileChannel fileChannel = fileInputStream.getChannel();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//创建缓冲区</span></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate((<span class="keyword">int</span>)file.length());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将通道的数据读入到 Buffer</span></span><br><span class="line">        fileChannel.read(byteBuffer);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将 byteBuffer 的字节数据转成 String</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(byteBuffer.array()));</span><br><span class="line">        fileInputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>图解：</p>
-<img src="netty.assets/image-20220120110653529.png" alt="image-20220120110653529" style="zoom:67%;" />
-
-<p> <strong>应用实例3 - 使用一个 Buffer 完成文件读取、写入</strong></p>
-<p>实例要求：</p>
-<ol>
-<li>使用 <code>FileChannel</code>（通道）和方法 <code>read、write</code>，完成文件的拷贝</li>
-<li>拷贝一个文本文件 <code>1.txt</code>，放在项目下即可</li>
-<li>代码演示</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.FileChannel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFileChannel03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;1.txt&quot;</span>);</span><br><span class="line">        FileChannel fileChannel01 = fileInputStream.getChannel();</span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;2.txt&quot;</span>);</span><br><span class="line">        FileChannel fileChannel02 = fileOutputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">512</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123; <span class="comment">//循环读取</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//这里有一个重要的操作，一定不要忘了</span></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            public final Buffer clear() &#123;</span></span><br><span class="line"><span class="comment">                position = 0;</span></span><br><span class="line"><span class="comment">                limit = capacity;</span></span><br><span class="line"><span class="comment">                mark = -1;</span></span><br><span class="line"><span class="comment">                return this;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            byteBuffer.clear(); <span class="comment">//清空 buffer</span></span><br><span class="line">            <span class="keyword">int</span> read = fileChannel01.read(byteBuffer);</span><br><span class="line">            System.out.println(<span class="string">&quot;read = &quot;</span> + read);</span><br><span class="line">            <span class="keyword">if</span> (read == -<span class="number">1</span>) &#123; <span class="comment">//表示读完</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将 buffer 中的数据写入到 fileChannel02--2.txt</span></span><br><span class="line">            byteBuffer.flip();</span><br><span class="line">            fileChannel02.write(byteBuffer);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//关闭相关的流</span></span><br><span class="line">        fileInputStream.close();</span><br><span class="line">        fileOutputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="netty.assets/image-20220120152324385.png" alt="image-20220120152324385"></p>
-<p>前面我们讲的读写操作，都是通过一个 <code>Buffer</code> 完成的，<code>NIO</code> 还支持通过多个 <code>Buffer</code>（即 <code>Buffer</code>数组）完成读写操作，即 <code>Scattering</code> 和 <code>Gathering</code>【举例说明】</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.ServerSocketChannel;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Scattering：将数据写入到 buffer 时，可以采用 buffer 数组，依次写入 [分散]</span></span><br><span class="line"><span class="comment"> * Gathering：从 buffer 读取数据时，可以采用 buffer 数组，依次读</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScatteringAndGatheringTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//使用 ServerSocketChannel 和 SocketChannel 网络</span></span><br><span class="line">        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line">        InetSocketAddress inetSocketAddress = <span class="keyword">new</span> InetSocketAddress(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//绑定端口到 socket，并启动</span></span><br><span class="line">        serverSocketChannel.socket().bind(inetSocketAddress);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建 buffer 数组</span></span><br><span class="line">        ByteBuffer[] byteBuffers = <span class="keyword">new</span> ByteBuffer[<span class="number">2</span>];</span><br><span class="line">        byteBuffers[<span class="number">0</span>] = ByteBuffer.allocate(<span class="number">5</span>);</span><br><span class="line">        byteBuffers[<span class="number">1</span>] = ByteBuffer.allocate(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//等客户端连接 (telnet)</span></span><br><span class="line">        SocketChannel socketChannel = serverSocketChannel.accept();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> messageLength = <span class="number">8</span>; <span class="comment">//假定从客户端接收 8 个字节</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//循环的读取</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> byteRead = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (byteRead &lt; messageLength) &#123;</span><br><span class="line">                <span class="keyword">long</span> l = socketChannel.read(byteBuffers);</span><br><span class="line">                byteRead += l; <span class="comment">//累计读取的字节数</span></span><br><span class="line">                System.out.println(<span class="string">&quot;byteRead = &quot;</span> + byteRead);</span><br><span class="line">                <span class="comment">//使用流打印,看看当前的这个 buffer 的 position 和 limit</span></span><br><span class="line">                Arrays.asList(byteBuffers).stream().map(buffer -&gt; <span class="string">&quot;position = &quot;</span> + buffer.position() + <span class="string">&quot;, limit = &quot;</span> + buffer.limit()).forEach(System.out::println);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将所有的 buffer 进行 flip</span></span><br><span class="line">            Arrays.asList(byteBuffers).forEach(buffer -&gt; buffer.flip());</span><br><span class="line">            <span class="comment">//将数据读出显示到客户端</span></span><br><span class="line">            <span class="keyword">long</span> byteWirte = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (byteWirte &lt; messageLength) &#123;</span><br><span class="line">                <span class="keyword">long</span> l = socketChannel.write(byteBuffers);<span class="comment">//</span></span><br><span class="line">                byteWirte += l;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//将所有的buffer进行clear</span></span><br><span class="line">            Arrays.asList(byteBuffers).forEach(buffer -&gt; &#123;</span><br><span class="line">                buffer.clear();</span><br><span class="line">            &#125;);</span><br><span class="line">            </span><br><span class="line">            System.out.println(<span class="string">&quot;byteRead = &quot;</span> + byteRead + <span class="string">&quot;, byteWrite = &quot;</span> + byteWirte + <span class="string">&quot;, messagelength = &quot;</span> + messageLength);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-3Selector-选择器"><a href="#3-2-3Selector-选择器" class="headerlink" title="3.2.3Selector(选择器)"></a>3.2.3Selector(选择器)</h4><p><strong>基本介绍</strong></p>
-<ol>
-<li><code>Java</code> 的 <code>NIO</code>，用非阻塞的 <code>IO</code> 方式。可以用一个线程，处理多个的客户端连接，就会使用到 <code>Selector</code>（选择器）。</li>
-<li><code>Selector</code> 能够检测多个注册的通道上是否有事件发生（注意：多个 <code>Channel</code> 以事件的方式可以注册到同一个 <code>Selector</code>），如果有事件发生，便获取事件然后针对每个事件进行相应的处理。这样就可以只用一个单线程去管理多个通道，也就是管理多个连接和请求。</li>
-<li>只有在连接/通道真正有读写事件发生时，才会进行读写，就大大地减少了系统开销，并且不必为每个连接都创建一个线程，不用去维护多个线程。</li>
-<li>避免了多线程之间的上下文切换导致的开销。</li>
-</ol>
-<p><strong>Selector示意图及说明</strong></p>
-<img src="netty.assets/image-20220124143326729.png" alt="image-20220124143326729" style="zoom:67%;" />
-
-<ol>
-<li><code>Netty</code> 的 <code>IO</code> 线程 <code>NioEventLoop</code> 聚合了 <code>Selector</code>（选择器，也叫多路复用器），可以同时并发处理成百上千个客户端连接。</li>
-<li>当线程从某客户端 <code>Socket</code> 通道进行读写数据时，若没有数据可用时，该线程可以进行其他任务。</li>
-<li>线程通常将非阻塞 <code>IO</code> 的空闲时间用于在其他通道上执行 <code>IO</code> 操作，所以单独的线程可以管理多个输入和输出通道。</li>
-<li>由于读写操作都是非阻塞的，这就可以充分提升 <code>IO</code> 线程的运行效率，避免由于频繁 <code>I/O</code> 阻塞导致的线程挂起。</li>
-<li>一个 <code>I/O</code> 线程可以并发处理 <code>N</code> 个客户端连接和读写操作，这从根本上解决了传统同步阻塞 <code>I/O</code> 一连接一线程模型，架构的性能、弹性伸缩能力和可靠性都得到了极大的提升。</li>
-</ol>
-<p><strong>相关方法</strong></p>
-<p><img src="netty.assets/image-20220124143505202.png" alt="image-20220124143505202"></p>
-<p>注意事项</p>
-<ol>
-<li><code>NIO</code> 中的 <code>ServerSocketChannel</code> 功能类似 <code>ServerSocket</code>、<code>SocketChannel</code> 功能类似 <code>Socket</code>。</li>
-<li><code>Selector</code> 相关方法说明<ul>
-<li><code>selector.select();</code> //阻塞</li>
-<li><code>selector.select(1000);</code> //阻塞 1000 毫秒，在 1000 毫秒后返回</li>
-<li><code>selector.wakeup();</code> //唤醒 selector</li>
-<li><code>selector.selectNow();</code> //不阻塞，立马返还</li>
-</ul>
-</li>
-</ol>
-<h3 id="3-3-NIO-非阻塞网络编程快速入门"><a href="#3-3-NIO-非阻塞网络编程快速入门" class="headerlink" title="3.3 NIO 非阻塞网络编程快速入门"></a>3.3 NIO 非阻塞网络编程快速入门</h3><p><code>NIO</code> 非阻塞网络编程相关的（<code>Selector</code>、<code>SelectionKey</code>、<code>ServerScoketChannel</code> 和 <code>SocketChannel</code>）关系梳理图</p>
-<img src="netty.assets/image-20220122113929003.png" alt="image-20220122113929003" style="zoom:80%;" />
-
-<ol>
-<li>当客户端连接时，会通过 <code>ServerSocketChannel</code> 得到 <code>SocketChannel</code>。</li>
-<li><code>Selector</code> 进行监听 <code>select</code> 方法，返回有事件发生的通道的个数。</li>
-<li>将 <code>socketChannel</code> 注册到 <code>Selector</code> 上，<code>register(Selector sel, int ops)</code>，一个 <code>Selector</code> 上可以注册多个 <code>SocketChannel</code>。</li>
-<li>注册后返回一个 <code>SelectionKey</code>，会和该 <code>Selector</code> 关联（集合）。</li>
-<li>进一步得到各个 <code>SelectionKey</code>（有事件发生）。</li>
-<li>在通过 <code>SelectionKey</code> 反向获取 <code>SocketChannel</code>，方法 <code>channel()</code>。</li>
-<li>可以通过得到的 <code>channel</code>，完成业务处理。</li>
-</ol>
-<h4 id="案例："><a href="#案例：" class="headerlink" title="案例："></a><strong>案例：</strong></h4><ol>
-<li>编写一个 <code>NIO</code> 入门案例，实现服务器端和客户端之间的数据简单通讯（非阻塞）</li>
-<li>目的：理解 <code>NIO</code> 非阻塞网络编程机制</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建ServerSocketChannel -&gt; ServerSocket</span></span><br><span class="line"></span><br><span class="line">        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//得到一个Selecor对象</span></span><br><span class="line">        Selector selector = Selector.open();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//绑定一个端口6666, 在服务器端监听</span></span><br><span class="line">        serverSocketChannel.socket().bind(<span class="keyword">new</span> InetSocketAddress(<span class="number">6666</span>));</span><br><span class="line">        <span class="comment">//设置为非阻塞</span></span><br><span class="line">        serverSocketChannel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//把 serverSocketChannel 注册到  selector 关心 事件为 OP_ACCEPT       pos_1</span></span><br><span class="line">        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;注册后的selectionkey 数量=&quot;</span> + selector.keys().size()); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//循环等待客户端连接</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//这里我们等待1秒，如果没有事件发生, 返回</span></span><br><span class="line">            <span class="keyword">if</span>(selector.select(<span class="number">1000</span>) == <span class="number">0</span>) &#123; <span class="comment">//没有事件发生</span></span><br><span class="line">                System.out.println(<span class="string">&quot;服务器等待了1秒，无连接&quot;</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//如果返回的&gt;0, 就获取到相关的 selectionKey集合</span></span><br><span class="line">            <span class="comment">//1.如果返回的&gt;0， 表示已经获取到关注的事件</span></span><br><span class="line">            <span class="comment">//2. selector.selectedKeys() 返回关注事件的集合</span></span><br><span class="line">            <span class="comment">//   通过 selectionKeys 反向获取通道</span></span><br><span class="line">            Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();</span><br><span class="line">            System.out.println(<span class="string">&quot;selectionKeys 数量 = &quot;</span> + selectionKeys.size());</span><br><span class="line"></span><br><span class="line">            <span class="comment">//遍历 Set&lt;SelectionKey&gt;, 使用迭代器遍历</span></span><br><span class="line">            Iterator&lt;SelectionKey&gt; keyIterator = selectionKeys.iterator();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (keyIterator.hasNext()) &#123;</span><br><span class="line">                <span class="comment">//获取到SelectionKey</span></span><br><span class="line">                SelectionKey key = keyIterator.next();</span><br><span class="line">                <span class="comment">//根据key 对应的通道发生的事件做相应处理</span></span><br><span class="line">                <span class="keyword">if</span>(key.isAcceptable()) &#123; <span class="comment">//如果是 OP_ACCEPT, 有新的客户端连接</span></span><br><span class="line">                    <span class="comment">//该该客户端生成一个 SocketChannel</span></span><br><span class="line">                    SocketChannel socketChannel = serverSocketChannel.accept();</span><br><span class="line">                    System.out.println(<span class="string">&quot;客户端连接成功 生成了一个 socketChannel &quot;</span> + socketChannel.hashCode());</span><br><span class="line">                    <span class="comment">//将  SocketChannel 设置为非阻塞</span></span><br><span class="line">                    socketChannel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">                    <span class="comment">//将socketChannel 注册到selector, 关注事件为 OP_READ， 同时给socketChannel</span></span><br><span class="line">                    <span class="comment">//关联一个Buffer</span></span><br><span class="line">                    socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(<span class="number">1024</span>));</span><br><span class="line"></span><br><span class="line">                    System.out.println(<span class="string">&quot;客户端连接后 ，注册的selectionkey 数量=&quot;</span> + selector.keys().size()); <span class="comment">//2,3,4..</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(key.isReadable()) &#123;  <span class="comment">//发生 OP_READ</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment">//通过key 反向获取到对应channel</span></span><br><span class="line">                    SocketChannel channel = (SocketChannel)key.channel();</span><br><span class="line"></span><br><span class="line">                    <span class="comment">//获取到该channel关联的buffer</span></span><br><span class="line">                    ByteBuffer buffer = (ByteBuffer)key.attachment();</span><br><span class="line">                    channel.read(buffer);</span><br><span class="line">                    System.out.println(<span class="string">&quot;form 客户端 &quot;</span> + <span class="keyword">new</span> String(buffer.array()));</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//手动从集合中移动当前的selectionKey, 防止重复操作</span></span><br><span class="line">                keyIterator.remove();</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pos1：</span><br><span class="line"></span><br><span class="line">1、对操作系统有一定了解的同学，就会大概知道这里监听的是一个Accept通道。这个通道的</span><br><span class="line">作用就是监听，实际建立连接了还会有一个通道。</span><br><span class="line">2、简单说一下为什么。因为客户端发请求的时候，服务器这边是肯定要先有一个监听通道，</span><br><span class="line">监听某个端口是否有客户端要建立链接，如果有客户端想要建立链接，那么会再创建一个和</span><br><span class="line">客户端真正通信的通道。</span><br><span class="line">3、如果有其它客户端还想要建立链接，这个Accept监听端口监听到了，就会再创建几个真正</span><br><span class="line">的通信通道。</span><br><span class="line">4、也就是Server的一个端口可以建立多个TCP连接，因为IP层协议通过</span><br><span class="line">目标地址+端口+源地址+源端口四个信息识别一个上下文</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.nio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//得到一个网络通道</span></span><br><span class="line">        SocketChannel socketChannel = SocketChannel.open();</span><br><span class="line">        <span class="comment">//设置非阻塞</span></span><br><span class="line">        socketChannel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">//提供服务器端的ip 和 端口</span></span><br><span class="line">        InetSocketAddress inetSocketAddress = <span class="keyword">new</span> InetSocketAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6666</span>);</span><br><span class="line">        <span class="comment">//连接服务器</span></span><br><span class="line">        <span class="keyword">if</span> (!socketChannel.connect(inetSocketAddress)) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (!socketChannel.finishConnect()) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;因为连接需要时间，客户端不会阻塞，可以做其它工作..&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...如果连接成功，就发送数据</span></span><br><span class="line">        String str = <span class="string">&quot;hello, 尚硅谷~&quot;</span>;</span><br><span class="line">        <span class="comment">//Wraps a byte array into a buffer</span></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.wrap(str.getBytes());</span><br><span class="line">        <span class="comment">//发送数据，将 buffer 数据写入 channel</span></span><br><span class="line">        socketChannel.write(buffer);</span><br><span class="line">        System.in.read();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="SelectionKey"><a href="#SelectionKey" class="headerlink" title="SelectionKey"></a>SelectionKey</h4><p><code>SelectionKey</code>，表示 <code>Selector</code> 和网络通道的注册关系，共四种：</p>
-<ul>
-<li><code>int OP_ACCEPT</code>：有新的网络连接可以 <code>accept</code>，值为 <code>16</code></li>
-<li><code>int OP_CONNECT</code>：代表连接已经建立，值为 <code>8</code></li>
-<li><code>int OP_READ</code>：代表读操作，值为 <code>1</code></li>
-<li><code>int OP_WRITE</code>：代表写操作，值为 <code>4</code></li>
-</ul>
-<p>相关方法</p>
-<p><img src="netty.assets/image-20220124144243843.png" alt="image-20220124144243843"></p>
-<h4 id="ServerSocketChannel"><a href="#ServerSocketChannel" class="headerlink" title="ServerSocketChannel"></a>ServerSocketChannel</h4><ol>
-<li><code>ServerSocketChannel</code> 在服务器端监听新的客户端 <code>Socket</code> 连接，负责监听，不负责实际的读写操作</li>
-<li>相关方法如下</li>
-</ol>
-<p><img src="netty.assets/image-20220124144311051.png" alt="image-20220124144311051"></p>
-<h4 id="SocketChannel"><a href="#SocketChannel" class="headerlink" title="SocketChannel"></a>SocketChannel</h4><ol>
-<li><code>SocketChannel</code>，网络 <code>IO</code> 通道，<strong>具体负责进行读写操作</strong>。<code>NIO</code> 把缓冲区的数据写入通道，或者把通道里的数据读到缓冲区。</li>
-<li>相关方法如下</li>
-</ol>
-<p><img src="netty.assets/image-20220124144334948.png" alt="image-20220124144334948"></p>
-<h4 id="NIO网络编程应用实例-群聊系统"><a href="#NIO网络编程应用实例-群聊系统" class="headerlink" title="NIO网络编程应用实例 - 群聊系统"></a>NIO网络编程应用实例 - 群聊系统</h4><p>实例要求：</p>
-<ol>
-<li>编写一个 <code>NIO</code> 群聊系统，实现服务器端和客户端之间的数据简单通讯（非阻塞）</li>
-<li>实现多人群聊</li>
-<li>服务器端：可以监测用户上线，离线，并实现消息转发功能</li>
-<li>客户端：通过 <code>Channel</code> 可以无阻塞发送消息给其它所有用户，同时可以接受其它用户发送的消息（有服务器转发得到）</li>
-<li>目的：进一步理解 <code>NIO</code> 非阻塞网络编程机制</li>
-</ol>
-<p><img src="netty.assets/image-20220124144425708.png" alt="image-20220124144425708"></p>
-<h3 id="3-4-零拷贝介绍"><a href="#3-4-零拷贝介绍" class="headerlink" title="3.4 零拷贝介绍"></a>3.4 零拷贝介绍</h3><p>实习再看</p>
-<h2 id="4-Netty"><a href="#4-Netty" class="headerlink" title="4.Netty"></a>4.Netty</h2><h3 id="4-1Netty介绍"><a href="#4-1Netty介绍" class="headerlink" title="4.1Netty介绍"></a>4.1Netty介绍</h3><p><strong>原生NIO存在的问题</strong></p>
-<ol>
-<li><code>NIO</code> 的类库和 <code>API</code> 繁杂，使用麻烦：需要熟练掌握 <code>Selector</code>、<code>ServerSocketChannel</code>、<code>SocketChannel</code>、<code>ByteBuffer</code>等。</li>
-<li>需要具备其他的额外技能：要熟悉 <code>Java</code> 多线程编程，因为 <code>NIO</code> 编程涉及到 <code>Reactor</code> 模式，你必须对多线程和网络编程非常熟悉，才能编写出高质量的 <code>NIO</code> 程序。</li>
-<li>开发工作量和难度都非常大：例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常流的处理等等。</li>
-<li><code>JDK NIO</code> 的 <code>Bug</code>：例如臭名昭著的 <code>Epoll Bug</code>，它会导致 <code>Selector</code> 空轮询，最终导致 <code>CPU100%</code>。直到 <code>JDK1.7</code> 版本该问题仍旧存在，没有被根本解决。</li>
-</ol>
-<p><strong>Netty说明</strong></p>
-<img src="netty.assets/image-20220124154327928.png" alt="image-20220124154327928" style="zoom:80%;" />
-
-<p><code>Netty</code> 对 <code>JDK</code> 自带的 <code>NIO</code> 的 <code>API</code> 进行了封装，解决了上述问题。</p>
-<ol>
-<li>设计优雅：适用于各种传输类型的统一 <code>API</code> 阻塞和非阻塞 <code>Socket</code>；基于灵活且可扩展的事件模型，可以清晰地分离关注点；高度可定制的线程模型-单线程，一个或多个线程池。</li>
-<li>使用方便：详细记录的 <code>Javadoc</code>，用户指南和示例；没有其他依赖项，<code>JDK5（Netty3.x）</code>或 <code>6（Netty4.x）</code>就足够了。</li>
-<li>高性能、吞吐量更高：延迟更低；减少资源消耗；最小化不必要的内存复制</li>
-<li>安全：完整的 <code>SSL/TLS</code> 和 <code>StartTLS</code> 支持。</li>
-<li>社区活跃、不断更新：社区活跃，版本迭代周期短，发现的 <code>Bug</code> 可以被及时修复，同时，更多的新功能会被加入。</li>
-</ol>
-<h3 id="4-2Netty-高性能架构设计"><a href="#4-2Netty-高性能架构设计" class="headerlink" title="4.2Netty 高性能架构设计"></a>4.2Netty 高性能架构设计</h3><h4 id="线程模型基本介绍"><a href="#线程模型基本介绍" class="headerlink" title="线程模型基本介绍"></a>线程模型基本介绍</h4><ol>
-<li><p>目前存在的线程模型有：传统阻塞 <code>I/O</code> 服务模型 和<code>Reactor</code> 模式</p>
-</li>
-<li><p>根据 <code>Reactor</code> 的数量和处理资源池线程的数量不同，有 <code>3</code> 种典型的实现</p>
-<ul>
-<li>单 <code>Reactor</code> 单线程；</li>
-<li>单 <code>Reactor</code>多线程；</li>
-<li>主从 <code>Reactor</code>多线程</li>
-</ul>
-</li>
-<li><p><code>Netty</code> 线程模式（<code>Netty</code> 主要基于主从 <code>Reactor</code> 多线程模型做了一定的改进，其中主从 <code>Reactor</code> 多线程模型有多个 <code>Reactor</code>）</p>
-</li>
-</ol>
-<h4 id="传统阻塞IO模型"><a href="#传统阻塞IO模型" class="headerlink" title="传统阻塞IO模型"></a>传统阻塞IO模型</h4><ol>
-<li>黄色的框表示对象，蓝色的框表示线程</li>
-<li>白色的框表示方法（<code>API</code>）</li>
-</ol>
-<p><strong>模型特点：</strong></p>
-<ol>
-<li>采用阻塞 <code>IO</code> 模式获取输入的数据</li>
-<li>每个连接都需要独立的线程完成数据的输入，业务处理，数据返回</li>
-</ol>
-<p><strong>问题分析</strong></p>
-<ol>
-<li>当并发数很大，就会创建大量的线程，占用很大系统资源</li>
-<li>连接创建后，如果当前线程暂时没有数据可读，该线程会阻塞在 Handler对象中的<code>read</code> 操作，导致上面的处理线程资源浪费</li>
-</ol>
-<img src="netty.assets/image-20220124154951169.png" alt="image-20220124154951169" style="zoom:67%;" />
-
-<h4 id="Reactor模型"><a href="#Reactor模型" class="headerlink" title="Reactor模型"></a>Reactor模型</h4><p><strong>针对传统阻塞 I/O 服务模型的 2 个缺点，解决方案：</strong></p>
-<p>基于 <code>I/O</code> 复用模型：多个连接共用一个阻塞对象<code>ServiceHandler</code>，应用程序只需要在一个阻塞对象等待，无需阻塞等待所有连接。当某个连接有新的数据可以处理时，操作系统通知应用程序，线程从阻塞状态返回，开始进行业务处理。</p>
-<p><strong>优点：</strong></p>
-<ol>
-<li>基于线程池复用线程资源：不必再为每个连接创建线程，将连接完成后的业务处理任务分配给线程进行处理，一个线程可以处理多个连接的业务。（解决了当并发数很大时，会创建大量线程，占用很大系统资源）</li>
-<li>基于 <code>I/O</code> 复用模型：多个客户端进行连接，先把连接请求给<code>ServiceHandler</code>。多个连接共用一个阻塞对象<code>ServiceHandler</code>。假设，当C1连接没有数据要处理时，C1客户端只需要阻塞于<code>ServiceHandler</code>，C1之前的处理线程便可以处理其他有数据的连接，不会造成线程资源的浪费。当C1连接再次有数据时，<code>ServiceHandler</code>根据线程池的空闲状态，将请求分发给空闲的线程来处理C1连接的任务。（解决了线程资源浪费的那个问题）</li>
-</ol>
-<img src="netty.assets/image-20220123123702170.png" alt="image-20220123123702170" style="zoom:80%;" />
-
-<p>说明：</p>
-<ol>
-<li><code>Reactor</code> 模式，通过一个或多个输入同时传递给服务处理器（ServiceHandler）的模式（基于事件驱动）</li>
-<li>服务器端程序处理传入的多个请求,并将它们同步分派到相应的处理线程，因此 <code>Reactor</code> 模式也叫 <code>Dispatcher</code> 模式</li>
-<li><code>Reactor</code> 模式使用 <code>IO</code> 复用监听事件，收到事件后，分发给某个线程（进程），这点就是网络服务器高并发处理关键</li>
-</ol>
-<blockquote>
-<p>原先有多个Handler阻塞，现在只用一个ServiceHandler阻塞</p>
-</blockquote>
-<ol>
-<li><code>Reactor（也就是那个ServiceHandler）</code>：<code>Reactor</code> 在一个单独的线程中运行，负责监听和分发事件，分发给适当的处理线程来对 <code>IO</code> 事件做出反应。它就像公司的电话接线员，它接听来自客户的电话并将线路转移到适当的联系人；</li>
-<li><code>Handlers（处理线程EventHandler）</code>：处理线程执行 <code>I/O</code> 事件要完成的实际事件，类似于客户想要与之交谈的公司中的实际官员。<code>Reactor</code> 通过调度适当的处理线程来响应 <code>I/O</code> 事件，处理程序执行非阻塞操作</li>
-</ol>
-<h3 id="4-2-Reactor模型分类"><a href="#4-2-Reactor模型分类" class="headerlink" title="4.2 Reactor模型分类"></a>4.2 Reactor模型分类</h3><p>根据 <code>Reactor</code> 的数量和处理资源池线程的数量不同，有 <code>3</code> 种典型的实现</p>
-<ol>
-<li>单 <code>Reactor</code> 单线程</li>
-<li>单 <code>Reactor</code> 多线程</li>
-<li>主从 <code>Reactor</code> 多线程</li>
-</ol>
-<h4 id="单Reactor单线程"><a href="#单Reactor单线程" class="headerlink" title="单Reactor单线程"></a><strong>单Reactor单线程</strong></h4><img src="netty.assets/image-20220123130010582.png" alt="image-20220123130010582" style="zoom:80%;" />
-
-<p><strong>说明：</strong></p>
-<ol>
-<li><code>Select</code> 是前面 <code>I/O</code> 复用模型介绍的标准网络编程 <code>API</code>，可以实现应用程序通过一个阻塞对象监听多路连接请求</li>
-<li><code>Reactor</code> 对象通过 <code>Select</code> 监控客户端请求事件，收到事件后通过 <code>Dispatch</code> 进行分发</li>
-<li>如果是建立连接请求事件，则由 <code>Acceptor</code> 通过 <code>Accept</code> 处理连接请求，然后创建一个 <code>Handler</code> 对象处理连接完成后的后续业务处理</li>
-<li>如果不是建立连接事件，则 <code>Reactor</code> 会分发调用连接对应的 <code>Handler</code> 来响应</li>
-<li><code>Handler</code> 会完成 <code>Read</code> → 业务处理 → <code>Send</code> 的完整业务流程</li>
-</ol>
-<p>结合实例：服务器端用一个线程通过多路复用搞定所有的 <code>IO</code> 操作（包括连接，读、写等），编码简单，清晰明了，但是如果客户端连接数量较多，将无法支撑，前面的 <code>NIO</code> 案例就属于这种模型</p>
-<ol>
-<li>缺点：性能问题，只有一个线程，无法完全发挥多核 <code>CPU</code> 的性能。<code>Handler</code>在处理某个连接上的业务时，整个进程无法处理其他连接事件，很容易导致性能瓶颈</li>
-<li>缺点：可靠性问题，线程意外终止，或者进入死循环，会导致整个系统通信模块不可用，不能接收和处理外部消息，造成节点故障</li>
-<li>使用场景：客户端的数量有限，业务处理非常快速，比如 <code>Redis</code> 在业务处理的时间复杂度 <code>O(1)</code> 的情况</li>
-</ol>
-<h4 id="单Reactor多线程"><a href="#单Reactor多线程" class="headerlink" title="单Reactor多线程"></a>单Reactor多线程</h4><img src="netty.assets/image-20220124161135129.png" alt="image-20220124161135129" style="zoom:67%;" />
-
-<ol>
-<li><code>Reactor</code> 对象通过 <code>Select</code> 监控客户端请求事件，收到事件后，通过 <code>Dispatch</code> 进行分发</li>
-<li>如果是建立连接请求，则由 <code>Acceptor</code> 通过 <code>accept</code> 处理连接请求，然后创建一个 <code>Handler</code> 对象处理完成连接后的各种事件</li>
-<li>如果不是连接请求，则由 <code>Reactor</code> 分发调用连接对应的 <code>handler</code> 来处理（也就是说连接已经建立，后续客户端再来请求，那基本就是数据请求了，直接调用之前为这个连接创建好的handler来处理）</li>
-<li><code>handler</code> 只负责响应事件，不做具体的业务处理（这样不会使handler阻塞太久），通过 <code>read</code> 读取数据后，会分发给后面的 <code>worker</code> 线程池的某个线程处理业务。【业务处理是最费时的，所以将业务处理交给线程池去执行】</li>
-<li><code>worker</code> 线程池会分配独立线程完成真正的业务，并将结果返回给 <code>handler</code></li>
-<li><code>handler</code> 收到响应后，通过 <code>send</code> 将结果返回给 <code>client</code></li>
-</ol>
-<p><strong>方案优缺点分析</strong></p>
-<ol>
-<li>优点：可以充分的利用多核 <code>cpu</code> 的处理能力</li>
-<li>缺点：多线程数据共享和访问比较复杂。<code>Reactor</code> 承担所有的事件的监听和响应，它是单线程运行，在高并发场景容易出现性能瓶颈。也就是说<code>Reactor</code>主线程承担了过多的事</li>
-</ol>
-<h4 id="主从Reactor多线程"><a href="#主从Reactor多线程" class="headerlink" title="主从Reactor多线程"></a>主从Reactor多线程</h4><img src="netty.assets/image-20220124161552864.png" alt="image-20220124161552864" style="zoom:67%;" />
-
-<p><img src="netty.assets/image-20220124161614511.png" alt="image-20220124161614511"></p>
-<ol>
-<li><code>Reactor</code> 主线程 <code>MainReactor</code> 对象通过 <code>select</code> 监听连接事件，收到事件后，通过 <code>Acceptor</code> 处理连接事件</li>
-<li>当 <code>Acceptor</code> 处理连接事件后，<code>MainReactor</code> 将连接分配给 <code>SubReactor</code></li>
-<li><code>subreactor</code> 将连接加入到连接队列进行监听，并创建 <code>handler</code> 进行各种事件处理</li>
-<li>当有新事件发生时，<code>subreactor</code> 就会调用对应的 <code>handler</code> 处理</li>
-<li><code>handler</code> 通过 <code>read</code> 读取数据，分发给后面的 <code>worker</code> 线程处理</li>
-<li><code>worker</code> 线程池分配独立的 <code>worker</code> 线程进行业务处理，并返回结果</li>
-<li><code>handler</code> 收到响应的结果后，再通过 <code>send</code> 将结果返回给 <code>client</code></li>
-<li><code>Reactor</code> 主线程可以对应多个 <code>Reactor</code> 子线程，即 <code>MainRecator</code> 可以关联多个 <code>SubReactor</code></li>
-<li></li>
-</ol>
-<img src="netty.assets/image-20220123153139159.png" alt="image-20220123153139159" style="zoom:80%;" />
-
-<p>方案优缺点：</p>
-<ol>
-<li>优点：父线程与子线程的数据交互简单职责明确，父线程只需要接收新连接，子线程完成后续的业务处理。</li>
-<li>优点：父线程与子线程的数据交互简单，<code>Reactor</code> 主线程只需要把新连接传给子线程，子线程无需返回数据。</li>
-<li>缺点：编程复杂度较高</li>
-</ol>
-<p><strong>小结：</strong></p>
-<p>理解</p>
-<ol>
-<li>单 <code>Reactor</code> 单线程，前台接待员和服务员是同一个人，全程为顾客服</li>
-<li>单 <code>Reactor</code> 多线程，<code>1</code> 个前台接待员，多个服务员，接待员只负责接待</li>
-<li>主从 <code>Reactor</code> 多线程，多个前台接待员，多个服务生</li>
-</ol>
-<p>优点</p>
-<ol>
-<li>响应快，不必为单个同步时间所阻塞，虽然 <code>Reactor</code> 本身依然是同步的（比如你第一个SubReactor阻塞了，我可以调下一个 SubReactor为客户端服务）</li>
-<li>可以最大程度的避免复杂的多线程及同步问题，并且避免了多线程/进程的切换开销</li>
-<li>扩展性好，可以方便的通过增加 <code>Reactor</code> 实例个数来充分利用 <code>CPU</code> 资源</li>
-<li>复用性好，<code>Reactor</code> 模型本身与具体事件处理逻辑无关，具有很高的复用性</li>
-</ol>
-<h3 id="4-4-Netty-模型"><a href="#4-4-Netty-模型" class="headerlink" title="4.4 Netty 模型"></a>4.4 Netty 模型</h3><p><code>Netty</code> 主要基于主从 <code>Reactors</code> 多线程模型（如图）做了一定的改进，其中主从 <code>Reactor</code> 多线程模型有多个 <code>Reactor</code></p>
-<p><strong>简单示意图：</strong></p>
-<p><img src="netty.assets/image-20220124202622042.png" alt="image-20220124202622042"></p>
-<ol>
-<li><code>BossGroup</code> 线程维护 <code>Selector</code>，只关注 <code>Accecpt</code></li>
-<li>当接收到 <code>Accept</code> 事件，获取到对应的 <code>SocketChannel</code>，封装成 <code>NIOScoketChannel</code> 并注册到 <code>Worker</code> 线程（事件循环），并进行维护</li>
-<li>当 <code>Worker</code> 线程监听到 <code>Selector</code> 中通道发生自己感兴趣的事件后，就进行处理（就由 <code>handler</code>），注意 <code>handler</code> 已经加入到通道</li>
-</ol>
-<p><strong>进阶示意图</strong></p>
-<p><img src="netty.assets/image-20220124202931563.png" alt="image-20220124202931563"></p>
-<p><code>BossGroup</code>有点像主<code>Reactor</code> 可以有多个，<code>WorkerGroup</code>则像<code>SubReactor</code>一样可以有多个。</p>
-<p><strong>详细版示意图3</strong></p>
-<p><img src="netty.assets/image-20220124203222807.png" alt="image-20220124203222807"></p>
-<ol>
-<li><p><code>Netty</code> 抽象出两组线程池 ，<code>BossGroup</code> 专门负责接收客户端的连接，<code>WorkerGroup</code> 专门负责网络的读写</p>
-</li>
-<li><p><code>BossGroup</code> 和 <code>WorkerGroup</code> 类型都是 `NioEventLoopGroup``</p>
-</li>
-<li><p>``NioEventLoopGroup<code>相当于一个事件循环组，这个组中含有多个事件循环，每一个事件循环是</code>NioEventLoop`</p>
-</li>
-<li><p><code>NioEventLoop</code> 表示一个不断循环的执行处理任务的线程，每个 <code>NioEventLoop</code> 都有一个 <code>Selector</code>，用于监听绑定在其上的 <code>socket</code> 的网络通讯</p>
-</li>
-<li><p><code>NioEventLoopGroup</code> 可以有多个线程，即可以含有多个 <code>NioEventLoop</code></p>
-</li>
-<li><p>每个 <code>BossGroup</code>下面的<code>NioEventLoop</code> 循环执行的步骤有 <code>3</code> 步</p>
-<ul>
-<li>轮询 <code>accept</code> 事件</li>
-<li>处理 <code>accept</code> 事件，与 <code>client</code> 建立连接，生成 <code>NioScocketChannel</code>，并将其注册到某个 <code>workerGroup</code> <code>NIOEventLoop</code> 上的 <code>Selector</code></li>
-<li>继续处理任务队列的任务，即 <code>runAllTasks</code></li>
-</ul>
-</li>
-<li><p>每个 <code>WorkerGroup</code> <code>NIOEventLoop</code> 循环执行的步骤</p>
-<ul>
-<li>轮询 <code>read</code>，<code>write</code> 事件</li>
-<li>处理 <code>I/O</code> 事件，即 <code>read</code>，<code>write</code> 事件，在对应 <code>NioScocketChannel</code> 处理</li>
-<li>处理任务队列的任务，即 <code>runAllTasks</code></li>
-</ul>
-</li>
-<li><p>每个 <code>Worker</code> <code>NIOEventLoop</code> 处理业务时，会使用 <code>pipeline</code>（管道），<code>pipeline</code> 中包含了 <code>channel（通道）</code>，即通过 <code>pipeline</code> 可以获取到对应通道，管道中维护了很多的处理器。（这个点目前只是简单的讲，后面重点说）</p>
-</li>
-</ol>
 
       
     </div>
