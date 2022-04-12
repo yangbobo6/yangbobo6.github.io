@@ -115,12 +115,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -149,6 +149,123 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/%E9%9D%A2%E8%AF%95%E4%B8%8D%E7%86%9F%E6%82%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/05/%E9%9D%A2%E8%AF%95%E4%B8%8D%E7%86%9F%E6%82%89/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-05 14:11:14" itemprop="dateCreated datePublished" datetime="2022-04-05T14:11:14+08:00">2022-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-12 11:51:36" itemprop="dateModified" datetime="2022-04-12T11:51:36+08:00">2022-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="面试常考不熟悉的知识点"><a href="#面试常考不熟悉的知识点" class="headerlink" title="面试常考不熟悉的知识点"></a>面试常考不熟悉的知识点</h2><h3 id="1-JDK动态代理"><a href="#1-JDK动态代理" class="headerlink" title="1.JDK动态代理"></a>1.JDK动态代理</h3><p><strong>实体类必须有接口</strong></p>
+<p>我访问你，你的父母作为代理，所有我通过你的父母访问你</p>
+<p>代码：</p>
+<p>HelloService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HelloServiceImpl实现层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServiceImpl</span> <span class="keyword">implements</span> <span class="title">HelloService</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello &quot;</span>+name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代理层，生成代理对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServiceProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Object target;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> target  真实对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> interfaces</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>    代理对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">bind</span><span class="params">(Object target, Class[] interfaces)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">        <span class="comment">//取得代理对象   </span></span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(target.getClass().getClassLoader(),</span><br><span class="line">                target.getClass().getInterfaces(), <span class="keyword">this</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;JDK动态代理-----&quot;</span>);</span><br><span class="line">        Object result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//反射方法前调用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;调用前&quot;</span>);</span><br><span class="line">        result = method.invoke(target,args);</span><br><span class="line">        System.out.println(<span class="string">&quot;调用后&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//代理初始化</span></span><br><span class="line">        HelloServiceProxy proxy = <span class="keyword">new</span> HelloServiceProxy();</span><br><span class="line">        <span class="comment">//真是对象</span></span><br><span class="line">        HelloService service = <span class="keyword">new</span> HelloServiceImpl();</span><br><span class="line">        </span><br><span class="line">        service = (HelloService)proxy.bind(service,<span class="keyword">new</span> Class[]&#123;HelloService.class&#125;);</span><br><span class="line">        service.sayHello(<span class="string">&quot;yangbo&quot;</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-单例模式及分析"><a href="#2-单例模式及分析" class="headerlink" title="2.单例模式及分析"></a>2.单例模式及分析</h3><p>单例模式写法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//https://www.jianshu.com/p/17a39b71f8d9</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton singleton = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//声明私有构造方法</span></span><br><span class="line">    <span class="keyword">private</span> Singleton&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//只有一个对外的接口</span></span><br><span class="line">    <span class="comment">//提供一个静态的公有方法，加入双重检查代码，解决线程安全问题, 同时解决懒加载问题</span></span><br><span class="line">    <span class="comment">//同时保证了效率, 推荐使用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//过滤部分请求，减少synchronized的开销</span></span><br><span class="line">        <span class="keyword">if</span>(singleton==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(Singleton.class)&#123;</span><br><span class="line">                <span class="comment">//避免有两个线程进来，初始化两次</span></span><br><span class="line">                <span class="keyword">if</span>(singleton==<span class="keyword">null</span>)&#123;</span><br><span class="line">            		singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">        		&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">指令重排：<span class="number">1.</span>给Test的实例分配内存 <span class="number">2.</span>初始化Test的构造器 <span class="number">3.</span>将instance对象指向分配的内存空间（注意 此时instance就不为空）</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-TCP的滑动窗口"><a href="#3-TCP的滑动窗口" class="headerlink" title="3.TCP的滑动窗口"></a>3.TCP的滑动窗口</h3><p>滑动窗口是一个接收方和发送发的缓冲区。基于TCP协议</p>
+<p>最初网络发送 是接收方收到，通知发送发，这样效率太低，所有有了滑动窗口。</p>
+<p><img src="%E9%9D%A2%E8%AF%95%E4%B8%8D%E7%86%9F%E6%82%89.assets/image-20220406142805153.png" alt="image-20220406142805153"></p>
+<p>现丢包情况：</p>
+<p>超时重传</p>
+<h3 id="4-ping的工作原理"><a href="#4-ping的工作原理" class="headerlink" title="4.ping的工作原理"></a>4.ping的工作原理</h3><p>利用网络上机器IP地址的唯一性，给目标IP地址发送一个数据包，通过对方回复的数据包来确定两台网络机器是否连接相通，时延是多少。</p>
+<h3 id="5-TCP和UDP"><a href="#5-TCP和UDP" class="headerlink" title="5.TCP和UDP"></a>5.TCP和UDP</h3><p>为了实现TCP网络通信的可靠性，增加校验和、序号标识、滑动窗口、确认应答、拥塞控制等复杂的机制，建立了繁琐的握手过程，增加了TCP对系统资源的消耗;TCP的重传机制、顺序控制机制等对数据传输有一定延时影响，降低了传输效率。TCP适合对传输效率要求低，但准确率要求高的应用场景，比如万维网(HTTP)、文件传输(FTP)、电子邮件(SMTP)等。</p>
+<p>UDP是无连接的，不可靠传输，尽最大努力交付数据，协议简单、资源要求少、传输速度快、实时性高的特点，适用于对传输效率要求高，但准确率要求低的应用场景，比如域名转换(DNS)、远程文件服务器(NFS)等。</p>
+<h3 id="6-进程间的通信方式"><a href="#6-进程间的通信方式" class="headerlink" title="6.进程间的通信方式"></a>6.进程间的通信方式</h3><ol>
+<li>管道pipe：管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</li>
+<li>命名管道FIFO：有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</li>
+<li>消息队列MessageQueue：消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</li>
+<li>共享存储SharedMemory：共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</li>
+<li> 信号量Semaphore：信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</li>
+<li> 套接字Socket：套解口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同及其间的进程通信。</li>
+<li> 信号 ( sinal ) ： 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</li>
+</ol>
+<h3 id="7-父类-子类-静态代码，构造方法等初始化顺序"><a href="#7-父类-子类-静态代码，构造方法等初始化顺序" class="headerlink" title="7.父类 子类 静态代码，构造方法等初始化顺序"></a>7.父类 子类 静态代码，构造方法等初始化顺序</h3><p>父类静态域</p>
+<p>子类静态域</p>
+<p>父类成员变量初始化</p>
+<p>父类构造块</p>
+<p>父类构造方法</p>
+<p>子类成员变量初始化</p>
+<p>子类构造块</p>
+<p>子类构造方法</p>
+<h3 id="8-快排"><a href="#8-快排" class="headerlink" title="8.快排"></a>8.快排</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分区过程</span></span><br><span class="line"><span class="comment">     * array[] 待分区数组</span></span><br><span class="line"><span class="comment">     *  left 待分区数组最小下标</span></span><br><span class="line"><span class="comment">     *  right 待分区数组最大下标</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="comment">//left和right是下标</span></span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = qSort(array,left,right);</span><br><span class="line">            quickSort(array,left,temp-<span class="number">1</span>);</span><br><span class="line">            quickSort(array,temp+<span class="number">1</span>,right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 排序过程</span></span><br><span class="line"><span class="comment">     *  a 待排序数组</span></span><br><span class="line"><span class="comment">     *  left 待排序数组最小下标</span></span><br><span class="line"><span class="comment">     *  right 待排序数组最大下标</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 排好序之后基准数的位置下标，方便下次的分区</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">qSort</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> temp = array[left];</span><br><span class="line">       <span class="keyword">while</span> (left&lt;right)&#123;</span><br><span class="line">           <span class="keyword">while</span> (left&lt;right&amp;&amp;array[right]&gt;temp)&#123;</span><br><span class="line">               right--;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">               array[left] = array[right];</span><br><span class="line">               left++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">while</span> (left&lt;right&amp;&amp;array[left]&lt;temp)&#123;</span><br><span class="line">               left++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">               array[right] = array[left];</span><br><span class="line">               right --;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       array[left]=temp;</span><br><span class="line">       <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-hashmap遍历方式"><a href="#9-hashmap遍历方式" class="headerlink" title="9.hashmap遍历方式"></a>9.hashmap遍历方式</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -927,9 +1044,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-12-30 20:34:13 / Modified: 21:25:43" itemprop="dateCreated datePublished" datetime="2021-12-30T20:34:13+08:00">2021-12-30</time>
+      <time title="Created: 2021-12-30 20:34:13" itemprop="dateCreated datePublished" datetime="2021-12-30T20:34:13+08:00">2021-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-04-10 12:08:08" itemprop="dateModified" datetime="2022-04-10T12:08:08+08:00">2022-04-10</time>
     </span>
 
   
@@ -966,7 +1089,7 @@
 <p>下载完毕上传到服务器上 /root</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">解压</span></span><br><span class="line">tar -zxvf nginx-1.18.0.tar.gz</span><br><span class="line">cd nginx-1.18.0</span><br><span class="line"><span class="meta">#</span><span class="bash"> ll  可查看configure文件</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">配置</span></span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">whereis nginx  #路径</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-nginx常用命令"><a href="#3-nginx常用命令" class="headerlink" title="3.nginx常用命令"></a>3.nginx常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line">./nginx  启动</span><br><span class="line">./nginx -s stop  停止</span><br><span class="line">./nginx -s quit  安全退出</span><br><span class="line">./nginx -s reload  重新加载配置文件</span><br><span class="line">ps aux|grep nginx  查看nginx进程</span><br></pre></td></tr></table></figure>
+<h4 id="3-nginx常用命令"><a href="#3-nginx常用命令" class="headerlink" title="3.nginx常用命令"></a>3.nginx常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line">./nginx  启动</span><br><span class="line">./nginx -s stop  停止</span><br><span class="line">./nginx -s quit  安全退出</span><br><span class="line">./nginx -s reload  重新加载配置文件</span><br><span class="line">ps aux|grep nginx  查看nginx进程</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">启动时候加载相应的配置文件</span></span><br><span class="line">nginx -c -t /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
 
 <p>启动成功访问 服务器ip:80</p>
 <blockquote>
@@ -975,12 +1098,25 @@
 <p><strong>注意：</strong>如何连接不上，检查阿里云安全组是否开放端口，或者服务器防火墙是否开放端口！</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 开启</span></span><br><span class="line">service firewalld start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启</span></span><br><span class="line">service firewalld restart</span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭</span></span><br><span class="line">service firewalld stop</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看防火墙规则</span></span><br><span class="line">firewall-cmd --list-all</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询端口是否开放</span></span><br><span class="line">firewall-cmd --query-port=8080/tcp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 开放80端口</span></span><br><span class="line">firewall-cmd --permanent --add-port=80/tcp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 移除端口</span></span><br><span class="line">firewall-cmd --permanent --remove-port=8080/tcp</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">重启防火墙(修改配置后要重启防火墙)</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 参数解释</span></span><br><span class="line">1、firwall-cmd：是Linux提供的操作firewall的一个工具；</span><br><span class="line">2、--permanent：表示设置为持久；</span><br><span class="line">3、--add-port：标识添加的端口；</span><br></pre></td></tr></table></figure>
 
+
+
+
+
 <h4 id="4-nginx配置代理"><a href="#4-nginx配置代理" class="headerlink" title="4.nginx配置代理"></a>4.nginx配置代理</h4><p>进入/usr/local/nginx/conf/nginx.conf文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/conf</span><br><span class="line">vim nginx.conf</span><br><span class="line"><span class="meta">#</span><span class="bash">配置负载均衡</span>  </span><br><span class="line">upstream yangbo_server&#123;</span><br><span class="line">	server 127.0.0.1:8080 weight=1;</span><br><span class="line">	server 127.0.0.1:8081 weight=1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">location时访问位置</span>  </span><br><span class="line">location / &#123;</span><br><span class="line"><span class="meta">	#</span><span class="bash">配置反向代理</span></span><br><span class="line">	proxy_pass http://yangbo_server;</span><br><span class="line">&#125;</span><br><span class="line">location /admin&#123;</span><br><span class="line"><span class="meta">	#</span><span class="bash">后台管理系统地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">全局块</span></span><br><span class="line"><span class="meta">#</span><span class="bash">user  nobody;</span></span><br><span class="line">worker_processes  1;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">event块</span></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">http块</span></span><br><span class="line">http &#123;</span><br><span class="line">    #http全局块</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    #server块</span><br><span class="line">    server &#123;</span><br><span class="line">        #server全局块</span><br><span class="line">        listen       8000;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        #location块</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    #这边可以有多个server块</span><br><span class="line">    server &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">docker run -d -v /home/dist:/dist -v /usr/docker_nginx_data/conf/nginx.conf:/etc/nginx/nginx.conf -p 8999:80 --name nginx nginx</span><br></pre></td></tr></table></figure>
 
+<h4 id="5-nginx部署前端项目"><a href="#5-nginx部署前端项目" class="headerlink" title="5.nginx部署前端项目"></a>5.nginx部署前端项目</h4><ul>
+<li><p>把前端打包好的vue项目生成的dist文件上传到nginx文件夹中（/usr/local/nginx）</p>
+</li>
+<li><p>nginx配置文件  中server里面的  local下面的地址改为dist</p>
+</li>
+</ul>
+<p>安装node</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y epel-release</span><br><span class="line">yum install -y nodejs</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1279,77 +1415,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/27/keyTool/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/27/keyTool/" class="post-title-link" itemprop="url">springboot整合https加密请求</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-12-27 22:06:13" itemprop="dateCreated datePublished" datetime="2021-12-27T22:06:13+08:00">2021-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-30 20:36:13" itemprop="dateModified" datetime="2021-12-30T20:36:13+08:00">2021-12-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huanzi-qch/p/12133872.html">https://www.cnblogs.com/huanzi-qch/p/12133872.html</a></p>
 
       
     </div>
