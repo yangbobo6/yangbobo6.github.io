@@ -189,7 +189,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-04-21 16:20:28" itemprop="dateModified" datetime="2022-04-21T16:20:28+08:00">2022-04-21</time>
+      <time title="Modified: 2022-05-02 08:30:28" itemprop="dateModified" datetime="2022-05-02T08:30:28+08:00">2022-05-02</time>
     </span>
 
   
@@ -261,7 +261,19 @@
 <p>数据库 索引  数据库优化方式   从表，库，查询方面</p>
 <p>limit（前几个）</p>
 <p>group by union  count</p>
-<h3 id="11-集合类"><a href="#11-集合类" class="headerlink" title="11.集合类"></a>11.集合类</h3><h4 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h4>
+<h3 id="11-集合类"><a href="#11-集合类" class="headerlink" title="11.集合类"></a>11.集合类</h3><h4 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h4><h3 id="12-线程池怎样设置参数"><a href="#12-线程池怎样设置参数" class="headerlink" title="12.线程池怎样设置参数"></a>12.线程池怎样设置参数</h3><p>多线程为了解决io高并发问题，没有io的业务，增加线程也没有意义。</p>
+<p>多核cpu的出现产生了多线程，可以充分利用多核cpu，单线程无法把多核cpu跑满 </p>
+<p><strong>核心线程数</strong></p>
+<p>cpu密集型的服务，线程数等于cpu核心数</p>
+<p>io密集型：2倍的cpu ，2N</p>
+<p><strong>最大线程数</strong></p>
+<p>任务队列满了后，将会增加最大线程数</p>
+<p><strong>任务队列</strong></p>
+<p><strong>拒绝策略</strong></p>
+<p>任务队列，最大线程数都满了，执行拒绝策略</p>
+<p><strong>空闲时间</strong></p>
+<p>30s  1min</p>
+
       
     </div>
 
